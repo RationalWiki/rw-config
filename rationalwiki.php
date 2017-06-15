@@ -8,18 +8,15 @@
 # and their default values, but don't forget to make changes in _this_
 # file, not there.
 
-# If you customize your file layout, set $IP to the directory that contains
-# the other MediaWiki files. It will be used as a base to locate files.
-#if( defined( 'MW_INSTALL_PATH' ) ) {
-#	$IP = MW_INSTALL_PATH;
-#} else {
-	$IP = dirname( __FILE__ );
-#}
+if ( !defined( 'MEDIAWIKI' ) ) {
+	exit;
+}
 
 $path = array( $IP, "$IP/includes", "$IP/languages" );
 set_include_path( implode( PATH_SEPARATOR, $path ) . PATH_SEPARATOR . get_include_path() );
 
-require_once('includes/DefaultSettings.php' );
+require __DIR__ . '/PrivateSettings.php';
+rwPrivateSettings();
 
 # If PHP's memory limit is very low, some operations may fail.
 ini_set( 'memory_limit', '128M' );
@@ -470,7 +467,7 @@ $wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
 $wgVandalBrakeConfigRemoveRights[] = 'upload';
 
 ## Paypal buttons
-require_once("$IP/extensions/paypal.php");
+require_once("$IP/extensions/RationalWiki/paypal.php");
 
 ## Wigo and other polls
 
@@ -497,13 +494,13 @@ $wgGroupPermissions['moderator']['renameuser'] = true;
 $wgGroupPermissions['tech']['renameuser'] = true;
 
 ## mp3 player
-include('extensions/flashmp3.php');
+include('extensions/FlashMP3/flashmp3.php');
  
 ## [[Special:Editcount]]
 require_once("$IP/extensions/Editcount/Editcount.php");
  
 ## Bible tag for quick and easy Bible-thumping
-require_once("$IP/extensions/bible.php");
+require_once("$IP/extensions/RationalWiki/bible.php");
  
 ## Youtube
 require_once("$IP/extensions/EmbedVideo/EmbedVideo.php");
@@ -520,7 +517,7 @@ require_once('extensions/Expand.php' );
 require_once( "{$IP}/extensions/Sort/Sort.php" );
 require_once('extensions/CharInsert/CharInsert.php' );
 require_once("$IP/extensions/SyntaxHighlight_GeSHi/SyntaxHighlight_GeSHi.php");
-require_once("$IP/extensions/DynamicFunctions.php");
+require_once("$IP/extensions/DynamicFunctions/DynamicFunctions.php");
 require_once( "{$IP}/extensions/TitleBlacklist/TitleBlacklist.php" );
 require_once( "$IP/extensions/Gadgets/Gadgets.php" );
 require_once($IP.'/extensions/InputBox/InputBox.php');
@@ -570,9 +567,9 @@ $wgLuceneSearchVersion = 2.1;
 ## topicon parser function to allow putting icons into the top right corner properly instead of using hacks
 require_once("$IP/extensions/topicon/topicon.php");
 ## extension to hide the page title
-require_once("$IP/extensions/notitle.php");
+require_once("$IP/extensions/RationalWiki/notitle.php");
 ## extension to change the page title style
-require_once("$IP/extensions/styletitle.php");
+require_once("$IP/extensions/RationalWiki/styletitle.php");
 ## checks if a new comment is signed
 require_once("$IP/extensions/SigChecker/SigChecker.php");
 
