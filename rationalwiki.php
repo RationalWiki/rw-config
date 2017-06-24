@@ -494,7 +494,7 @@ $wgGroupPermissions['moderator']['renameuser'] = true;
 $wgGroupPermissions['tech']['renameuser'] = true;
 
 ## mp3 player
-include('extensions/FlashMP3/flashmp3.php');
+require_once("$IP/extensions/FlashMP3/flashmp3.php");
  
 ## [[Special:Editcount]]
 require_once("$IP/extensions/Editcount/Editcount.php");
@@ -505,17 +505,17 @@ require_once("$IP/extensions/RationalWiki/bible.php");
 ## Youtube
 require_once("$IP/extensions/EmbedVideo/EmbedVideo.php");
  
-require_once('extensions/ParserFunctions/ParserFunctions.php' );
+require_once("$IP/extensions/ParserFunctions/ParserFunctions.php");
 $wgPFEnableStringFunctions = true;
-require_once('extensions/DynamicPageList/DynamicPageList.php');
-require_once('extensions/SubPageList/SubPageList.php');
-require_once('extensions/Variables/Variables.php' );
-require_once('extensions/Cite/Cite.php' );
-require_once('extensions/RandomSelection.php' );
+require_once("$IP/extensions/DynamicPageList/DynamicPageList.php");
+require_once("$IP/extensions/SubPageList/SubPageList.php");
+require_once("$IP/extensions/Variables/Variables.php");
+require_once("$IP/extensions/Cite/Cite.php");
+require_once("$IP/extensions/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
-require_once('extensions/Expand.php' );
+require_once("$IP/extensions/RationalWiki/Expand.php");
 require_once( "{$IP}/extensions/Sort/Sort.php" );
-require_once('extensions/CharInsert/CharInsert.php' );
+require_once("$IP/extensions/CharInsert/CharInsert.php");
 require_once("$IP/extensions/SyntaxHighlight_GeSHi/SyntaxHighlight_GeSHi.php");
 require_once("$IP/extensions/DynamicFunctions/DynamicFunctions.php");
 require_once( "{$IP}/extensions/TitleBlacklist/TitleBlacklist.php" );
@@ -555,14 +555,6 @@ $wgLuceneHost = '173.255.233.133';
 $wgLucenePort = 8123;
 require_once("$IP/extensions/MWSearch/MWSearch.php");
 $wgLuceneSearchVersion = 2.1;
-
-# OAI Repository extension for Lucene
-# Disabled because it breaks other special pages.
-#@include( $IP.'/extensions/OAI/OAIRepo.php' );
-#$oaiAgentRegex = '/experimental/';
-#$oaiAuth = true; # broken... squid? php config? wtf
-#$oaiAudit = true;
-#$oaiAuditDatabase = 'oai';
 
 ## topicon parser function to allow putting icons into the top right corner properly instead of using hacks
 require_once("$IP/extensions/topicon/topicon.php");
@@ -646,28 +638,6 @@ foreach ( $logGroups as $logGroup ) {
 	$wgDebugLogGroups[$logGroup] = "/home/rationalwiki/mw-log/$logGroup.log";
 }
 $wgDBerrorLog = '/home/rationalwiki/mw-log/dberror.log';
-
-#include_once('extensions/CheckUser/CheckUser.php');
-#require_once( "$IP/extensions/ModBlock/ModBlock.php" );
-
-#require_once( "$IP/extensions/TrollBGone.php" );
-
-#$wgHooks['SpecialRecentChangesQuery'][] = 'rcExcludeSandbox';
-
-#function rcExcludeSandbox( $conds ) {
-#    $dbr = wfGetDB( DB_SLAVE );
-#    $conds[] = 'rc_title != ' . $dbr->addQuotes( 'Do_we_keep_these_CP-related_articles?' );
-#    return true;
-#}
-
-#$wgMaxArticleSize = 400;
-#include_once('extensions/TorBlock/TorBlock.php');
-
-# $wgGroupPermissions['user']['torunblocked'] = false;
-# $wgGroupPermissions['user']['autoconfirmed'] = true;
-#$wgTorAllowedActions = array( 'read' );
-
-#$wgTorIPs = array( '208.80.152.2' );
 
 $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
 

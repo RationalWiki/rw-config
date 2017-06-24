@@ -1,0 +1,89 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" == "--ssh" ]; then
+	shift
+	github_base=ssh://git@github.com
+	gerrit_base=ssh://gerrit.wikimedia.org:29418
+else
+	github_base=https://github.com
+	gerrit_base=https://gerrit.wikimedia.org/r/p
+fi
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 <dest-dir>"
+	exit 1
+fi
+
+base=$(realpath "$1")
+mw_release_branch=REL1_27
+
+if [ ! -e "$base" ]; then
+	mkdir -p "$base"
+fi
+
+make-extension() {
+	cd "$base"
+	if [ -e "$2" ]; then
+		return
+	fi
+	git clone -n "$1" "$2"
+	cd "$2"
+	if git rev-parse -q --verify "origin/$mw_release_branch"; then
+		git checkout -b "$mw_release_branch" "origin/$mw_release_branch"
+	else
+		git checkout master
+	fi
+}
+
+gerrit_extensions="
+	AbuseFilter
+	AntiSpoof
+	CharInsert
+	CirrusSearch
+	Cite
+	ConfirmEdit
+	DynamicPageList
+	Elastica
+	Gadgets
+	ImageMap
+	InputBox
+	Interwiki
+	LiquidThreads
+	Math
+	OggHandler
+	ParserFunctions
+	PdfHandler
+	Renameuser
+	SyntaxHighlight_GeSHi
+	TitleBlacklist
+	Variables
+	WikiEditor
+	"
+
+rw_extensions="
+	AutoWIGO2
+	bestof
+	DynamicFunctions
+	RWEditcount
+	RWElection
+	ImageFilter
+	Intercom
+	iw-nofollow
+	RationalWiki
+	SigChecker
+	VandalBrake2
+	"
+
+make-extension "$github_base/HydraWiki/mediawiki-embedvideo.git" EmbedVideo
+make-extension "$github_base/inclumedia/RandomSelection.git" RandomSelection
+make-extension "$github_base/JeroenDeDauw/SubPageList.git" SubPageList
+
+for ext in $gerrit_extensions; do
+	make-extension "$gerrit_base/mediawiki/extensions/$ext.git" $ext
+done
+
+for ext in $rw_extensions; do
+	make-extension "$github_base/RationalWiki/mediawiki-extensions-$ext.git" $ext
+done
