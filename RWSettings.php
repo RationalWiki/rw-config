@@ -17,6 +17,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 	case 'ru_rationalwiki':
 		$host = 'ru.rationalwiki.org';
 		break;
+	}
 } else {
 	throw Exception( 'Unable to determine hostname' );
 }
