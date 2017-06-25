@@ -10,11 +10,11 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 	$host = $_SERVER['HTTP_HOST'];
 } elseif ( defined( 'MW_DB' ) ) {
 	switch ( MW_DB ) {
-	case 'rw_en':
+	case 'rationalwiki':
 		$host = 'rationalwiki.org';
 		break;
 
-	case 'rw_ru':
+	case 'ru_rationalwiki':
 		$host = 'ru.rationalwiki.org';
 		break;
 } else {
@@ -23,15 +23,19 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 switch ( $host ) {
 	case 'rationalwiki.org':
-		$wgDBname = 'rw_en';
+		$wgDBname = 'rationalwiki';
 		$wgLanguageCode = 'en';
-		$wgLocalInterwikis = array( 'RationalWiki' );
+		$wgLocalInterwikis = array( 'RationalWiki', 'en' );
 		break;
 
+	// case 'qq.rationalwiki.org':
 	case 'ru.rationalwiki.org':
-		$wgDBname = 'rw_ru';
-		$wgLanguageCode = 'ru';
-		$wgLocalInterwikis = array( 'ru' );
+		if ( !preg_match( '/^(\w+)\./', $host, $m ) ) {
+			throw new Exception( "domain match failed" );
+		}
+		$wgLanguageCode = $m[1];
+		$wgDBname = "{$wgLanguageCode}_rationalwiki";
+		$wgLocalInterwikis = array( $wgLanguageCode );
 		break;
 
 	default:
@@ -43,7 +47,7 @@ $wgSitename = "RationalWiki";
 $wgCookieDomain = '.rationalwiki.org';
 
 $wgFavicon ="/w/favicon.ico";
-$wgLogo = "/w/images/6/6e/Rw_logo.png";
+$wgLogo = "/images/6/6e/Rw_logo.png";
 # and so this is Saturnalia, and what have you done?
 # To set the Christmas hat logo, just change File:Rw_logo.png
 
@@ -83,8 +87,8 @@ $wgDBprefix         = "";
 $wgDBTableOptions   = "TYPE=InnoDB";
 
 # Shared tables
-if ( $wgDBname !== 'rw_en' ) {
-	$wgSharedDB = 'rw_en';
+if ( $wgDBname !== 'rationalwiki' ) {
+	$wgSharedDB = 'rationalwiki';
 	$wgSharedTables[] = 'user_groups';
 	$wgSharedTables[] = 'ipblocks';
 	$wgSharedTables[] = 'vandals';
@@ -99,10 +103,10 @@ if ( $wgDBname !== 'rw_en' ) {
 }
 
 # Uploads
-if ( $wgDBname === 'rw_en' ) {
+if ( $wgDBname === 'rationalwiki' ) {
 	$wgEnableUploads = true;
 	$wgUploadPath = '/images';
-	$wgUploadDirectory = '/srv/rw_en/images';
+	$wgUploadDirectory = "/bulk/images/{$host}";
 } else {
 	$wgEnableUploads = false;
 	$wgUploadNavigationUrl = "http://rationalwiki.org/wiki/Special:Upload";
@@ -110,9 +114,9 @@ if ( $wgDBname === 'rw_en' ) {
 	$wgForeignFileRepos[] = array(
 		'class' => 'ForeignDBViaLBRepo',
 		'name' => 'shared',
-		'directory' => '/srv/rw_en/images',
+		'directory' => '/bulk/images/rationalwiki.org',
 		'url' => 'http://rationalwiki.org/images',
-		'wiki' => 'rw_en',
+		'wiki' => 'rationalwiki',
 	);
 }
 
@@ -158,7 +162,7 @@ $wgParserCacheType = CACHE_MEMCACHED;
 $wgMessageCacheType = CACHE_MEMCACHED;
 $wgMemCachedServers = array( "127.0.0.1:11211" );
 
-$wgCacheDirectory = "/srv/{$wgDBname}/cache";
+$wgCacheDirectory = "/bulk/cache/{$wgDBname}";
 
 # Update this timestamp to clear the parser cache
 $wgCacheEpoch = '20170607000000';
@@ -189,7 +193,7 @@ define("NS_RECIPE_TALK", 109);
 define("NS_FORUM", 110);
 define("NS_FORUM_TALK", 111);
 
-if ( $wgDBname === 'rw_en' ) {
+if ( $wgDBname === 'rationalwiki' ) {
 	$wgExtraNamespaces = array(
 		NS_CONSERVAPEDIA => "Conservapedia",
 		NS_CONSERVAPEDIA_TALK => "Conservapedia_talk",
@@ -544,9 +548,9 @@ $logGroups = array(
 	'slow-parse'
 );
 foreach ( $logGroups as $logGroup ) {
-	$wgDebugLogGroups[$logGroup] = "/srv/rw_common/log/$logGroup.log";
+	$wgDebugLogGroups[$logGroup] = "/var/log/mw/$logGroup.log";
 }
-$wgDBerrorLog = '/srv/rw_common/log/dberror.log';
+$wgDBerrorLog = '/var/log/mw/dberror.log';
 
 $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
 
