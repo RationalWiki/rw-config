@@ -34,13 +34,11 @@ make-module() {
 	if [ -e "$3" ]; then
 		return
 	fi
-	git clone --depth 1 -n "$2" "$3"
-	cd "$3"
-	if git rev-parse -q --verify "origin/$mw_release_branch"; then
-		git checkout -b "$mw_release_branch" "origin/$mw_release_branch"
-	else
-		git checkout master
+	# If the release branch doesn't exist, use master
+	if ! git clone -b "$mw_release_branch" "$2" "$3"; then
+		git clone "$2" "$3"
 	fi
+	# Run composer if there is a composer.json
 	if [ -e composer.json ]; then
 		composer update || true
 	fi
