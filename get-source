@@ -22,19 +22,37 @@ mw_release_branch=REL1_27
 if [ ! -e "$base" ]; then
 	mkdir -p "$base"
 fi
+if [ ! -e "$base/extensions" ]; then
+	mkdir "$base/extensions"
+fi
+if [ ! -e "$base/skins" ]; then
+	mkdir "$base/skins"
+fi
 
-make-extension() {
-	cd "$base"
-	if [ -e "$2" ]; then
+make-module() {
+	cd "$1"
+	if [ -e "$3" ]; then
 		return
 	fi
-	git clone -n "$1" "$2"
-	cd "$2"
+	git clone --depth 1 -n "$2" "$3"
+	cd "$3"
 	if git rev-parse -q --verify "origin/$mw_release_branch"; then
 		git checkout -b "$mw_release_branch" "origin/$mw_release_branch"
 	else
 		git checkout master
 	fi
+	if [ -e composer.json ]; then
+		composer update || true
+	fi
+
+}
+
+make-extension() {
+	make-module "$base/extensions" "$1" "$2"
+}
+
+make-skin() {
+	make-module "$base/skins" "$1" "$2"
 }
 
 gerrit_extensions="
@@ -76,6 +94,16 @@ rw_extensions="
 	VandalBrake2
 	"
 
+skins="
+	CologneBlue
+	Modern
+	MonoBook
+	Nostalgia
+	Vector
+	"
+
+make-module "$base" "$gerrit_base/mediawiki/core.git" core
+
 make-extension "$github_base/HydraWiki/mediawiki-embedvideo.git" EmbedVideo
 make-extension "$github_base/inclumedia/RandomSelection.git" RandomSelection
 make-extension "$github_base/JeroenDeDauw/SubPageList.git" SubPageList
@@ -86,4 +114,8 @@ done
 
 for ext in $rw_extensions; do
 	make-extension "$github_base/RationalWiki/mediawiki-extensions-$ext.git" $ext
+done
+
+for skin in $skins; do
+	make-module "$base/skins" "$gerrit_base/mediawiki/skins/$skin.git" $skin
 done
