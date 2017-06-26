@@ -456,11 +456,11 @@ require_once("$wgExtensionDirectory/RationalWiki/paypal.php");
 
 ## Wigo and other polls
 
-require_once("$wgExtensionDirectory/wigo3/wigo3.php");
+require_once("$wgExtensionDirectory/Wigo3/wigo3.php");
 $wgWigo3ConfigStoreIPs = true;
-require_once("$wgExtensionDirectory/wigo3/slider.php");
-require_once("$wgExtensionDirectory/wigo3/checkbox.php");
-require_once("$wgExtensionDirectory/wigo3/multi.php");
+require_once("$wgExtensionDirectory/Wigo3/slider.php");
+require_once("$wgExtensionDirectory/Wigo3/checkbox.php");
+require_once("$wgExtensionDirectory/Wigo3/multi.php");
 require_once("$wgExtensionDirectory/bestof/bestof.php");
 require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
 require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
