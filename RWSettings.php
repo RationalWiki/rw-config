@@ -47,8 +47,8 @@ $wgServer = "http://$host";
 $wgSitename = "RationalWiki";
 $wgCookieDomain = '.rationalwiki.org';
 
-$wgFavicon ="/w/favicon.ico";
-$wgLogo = "/images/6/6e/Rw_logo.png";
+$wgFavicon ="/favicon.ico";
+$wgLogo = "/w/images/6/6e/Rw_logo.png";
 # and so this is Saturnalia, and what have you done?
 # To set the Christmas hat logo, just change File:Rw_logo.png
 
@@ -106,7 +106,7 @@ if ( $wgDBname !== 'rationalwiki' ) {
 # Uploads
 if ( $wgDBname === 'rationalwiki' ) {
 	$wgEnableUploads = true;
-	$wgUploadPath = '/images';
+	$wgUploadPath = '/w/images';
 	$wgUploadDirectory = "/bulk/images/{$host}";
 } else {
 	$wgEnableUploads = false;
@@ -116,7 +116,7 @@ if ( $wgDBname === 'rationalwiki' ) {
 		'class' => 'ForeignDBViaLBRepo',
 		'name' => 'shared',
 		'directory' => '/bulk/images/rationalwiki.org',
-		'url' => 'http://rationalwiki.org/images',
+		'url' => 'http://rationalwiki.org/w/images',
 		'wiki' => 'rationalwiki',
 	);
 }
@@ -170,7 +170,6 @@ $wgCacheEpoch = '20170607000000';
 
 #$wgReadOnly = "Update in progress see tech blog.";
 
-$wgFavicon = "$wgScriptPath/favicon.ico";
 $wgRateLimts= array(
     'edit' => array(
         'anon'   => 1,6000, // for any and all anonymous edits (aggregate)
@@ -397,6 +396,9 @@ $wgExtraLanguageNames = array( 'en-ownwork' => 'English upload form for own work
 ##  Extensions
 ##
 
+$wgExtensionDirectory = '/srv/rw_common/extensions';
+$wgStyleDirectory = '/srv/rw_common/skins';
+
 wfLoadExtensions( array(
 	'AbuseFilter',
 	'AntiSpoof',
@@ -417,6 +419,14 @@ wfLoadExtensions( array(
 	'SyntaxHighlight_GeSHi',
 	'TitleBlacklist',
 	'WikiEditor',
+) );
+
+wfLoadSkins( array(
+	'CologneBlue',
+	'Modern',
+	'MonoBook',
+	'Nostalgia',
+	'Vector'
 ) );
 
 ## Recaptcha
