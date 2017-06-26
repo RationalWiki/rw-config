@@ -39,10 +39,10 @@ make-module() {
 		git clone "$2" "$3"
 	fi
 	# Run composer if there is a composer.json
+	cd "$3"
 	if [ -e composer.json ]; then
 		composer update || true
 	fi
-
 }
 
 make-extension() {

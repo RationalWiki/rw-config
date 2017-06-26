@@ -493,7 +493,6 @@ require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
 require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
-require_once("$wgExtensionDirectory/PlaceNewSection/PlaceNewSection.php");
 require_once("$wgExtensionDirectory/ImageMap/ImageMap.php");
 
 # Interwiki
