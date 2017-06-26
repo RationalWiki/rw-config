@@ -446,55 +446,55 @@ $wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
 
 ## Vandal Brake
 
-require_once("$IP/extensions/VandalBrake2/VandalBrake2.php");
+require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
 $wgVandalBrakeConfigAllowMove = false;
 $wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
 $wgVandalBrakeConfigRemoveRights[] = 'upload';
 
 ## Paypal buttons
-require_once("$IP/extensions/RationalWiki/paypal.php");
+require_once("$wgExtensionDirectory/RationalWiki/paypal.php");
 
 ## Wigo and other polls
 
-require_once("$IP/extensions/wigo3/wigo3.php");
+require_once("$wgExtensionDirectory/wigo3/wigo3.php");
 $wgWigo3ConfigStoreIPs = true;
-require_once("$IP/extensions/wigo3/slider.php");
-require_once("$IP/extensions/wigo3/checkbox.php");
-require_once("$IP/extensions/wigo3/multi.php");
-require_once("$IP/extensions/bestof/bestof.php");
-require_once( "$IP/extensions/AutoWIGO2/AutoWIGO2.php" );
-require_once( "$IP/extensions/RWElection/RWElection.php" );
+require_once("$wgExtensionDirectory/wigo3/slider.php");
+require_once("$wgExtensionDirectory/wigo3/checkbox.php");
+require_once("$wgExtensionDirectory/wigo3/multi.php");
+require_once("$wgExtensionDirectory/bestof/bestof.php");
+require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
+require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
 #$wgElectionName = "Mods2017";
 #$wgElectionCandidates = array("Avengerofthe BoN", "Applesauce", "Bongolian", "CheeseburgerFace", "David Gerard", "DiamondDisc1", "FuzzyCatPotato", "Hipocrite", "N7.Geth", "Pbfreespace3", "Weaseloid", "Zero", "Rational1", "CorruptUser", "Reverend Black Percy");
 
 ## Intercom
-require_once("$IP/extensions/Intercom/Intercom.php");
+require_once("$wgExtensionDirectory/Intercom/Intercom.php");
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
-require_once("$IP/extensions/iw-nofollow/iw-nofollow.php");
+require_once("$wgExtensionDirectory/iw-nofollow/iw-nofollow.php");
 
 ## Renameuser
 $wgGroupPermissions['moderator']['renameuser'] = true;
 $wgGroupPermissions['tech']['renameuser'] = true;
  
 ## [[Special:Editcount]]
-require_once("$IP/extensions/RWEditcount/RWEditcount.php");
+require_once("$wgExtensionDirectory/RWEditcount/RWEditcount.php");
  
 ## Bible tag for quick and easy Bible-thumping
-require_once("$IP/extensions/RationalWiki/bible.php");
+require_once("$wgExtensionDirectory/RationalWiki/bible.php");
 
 # ParserFunctions
 $wgPFEnableStringFunctions = true;
 
-require_once("$IP/extensions/DynamicPageList/DynamicPageList.php");
-require_once("$IP/extensions/SubPageList/SubPageList.php");
-require_once("$IP/extensions/Variables/Variables.php");
-require_once("$IP/extensions/RandomSelection/RandomSelection.php");
+require_once("$wgExtensionDirectory/DynamicPageList/DynamicPageList.php");
+require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
+require_once("$wgExtensionDirectory/Variables/Variables.php");
+require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
-require_once("$IP/extensions/RationalWiki/Expand.php");
-require_once("$IP/extensions/DynamicFunctions/DynamicFunctions.php");
-require_once("$IP/extensions/PlaceNewSection/PlaceNewSection.php");
-require_once("$IP/extensions/ImageMap/ImageMap.php");
+require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
+require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
+require_once("$wgExtensionDirectory/PlaceNewSection/PlaceNewSection.php");
+require_once("$wgExtensionDirectory/ImageMap/ImageMap.php");
 
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
@@ -508,7 +508,7 @@ $wgAbuseFilterBlockDuration = '314159 seconds';
 #$wgAbuseFilterAnonBlockDuration = '314159 seconds';
 
 ## Ogg support
-require( "$IP/extensions/OggHandler/OggHandler.php" );
+require( "$wgExtensionDirectory/OggHandler/OggHandler.php" );
 $wgFFmpegLocation = '/usr/bin/ffmpeg';
 
 ## PDF and DjVu support
@@ -516,18 +516,18 @@ $wgDjvuDump = "djvudump";
 $wgDjvuRenderer = "ddjvu";
 
 ## Filters NSFW images
-require_once( "$IP/extensions/ImageFilter/ImageFilter.php" );
+require_once( "$wgExtensionDirectory/ImageFilter/ImageFilter.php" );
 
 ## CirrusSearch
-require_once( "$IP/extensions/CirrusSearch/CirrusSearch.php" );
+require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
 $wgSearchType = 'CirrusSearch';
 
 ## extension to hide the page title
-require_once("$IP/extensions/RationalWiki/notitle.php");
+require_once("$wgExtensionDirectory/RationalWiki/notitle.php");
 ## extension to change the page title style
-require_once("$IP/extensions/RationalWiki/styletitle.php");
+require_once("$wgExtensionDirectory/RationalWiki/styletitle.php");
 ## checks if a new comment is signed
-require_once("$IP/extensions/SigChecker/SigChecker.php");
+require_once("$wgExtensionDirectory/SigChecker/SigChecker.php");
 
 $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
@@ -546,7 +546,7 @@ $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
 ## Temporary
 #$wgShowExceptionDetails = true;
 
-require_once( "$IP/extensions/LiquidThreads/LiquidThreads.php" );
+require_once( "$wgExtensionDirectory/LiquidThreads/LiquidThreads.php" );
 $wgLqtTalkPages = false;
 
 $wgMaxShellMemory = 0;
