@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $(id -un) != "www-data" ]; then
+	echo "Invalid user name"
+	exit 1
+fi
+
+for wiki in rationalwiki ru_rationalwiki; do
+	flock -n /var/run/lock/mw-job-runner-$wiki \
+		php /srv/rw_common/core/maintenance/runJobs.php --wiki=$wiki >> /var/log/mw/runJobs.log
+done
