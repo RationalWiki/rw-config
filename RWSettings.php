@@ -554,8 +554,9 @@ $wgThumbnailEpoch = '20101114210500';
 $wgLocaltimezone = "UTC";
 
 $logGroups = array(
-	'lqt',
+	'CirrusSearch',
 	'exception',
+	'lqt',
 	'slow-parse'
 );
 foreach ( $logGroups as $logGroup ) {
