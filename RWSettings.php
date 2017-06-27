@@ -118,6 +118,7 @@ if ( $wgDBname === 'rationalwiki' ) {
 		'directory' => '/bulk/images/rationalwiki.org',
 		'url' => 'http://rationalwiki.org/w/images',
 		'wiki' => 'rationalwiki',
+		'hasSharedCache' => true,
 	);
 }
 
@@ -169,16 +170,6 @@ $wgCacheDirectory = "/bulk/cache/{$wgDBname}";
 $wgCacheEpoch = '20170607000000';
 
 #$wgReadOnly = "Update in progress see tech blog.";
-
-$wgRateLimts= array(
-    'edit' => array(
-        'anon'   => 1,6000, // for any and all anonymous edits (aggregate)
-        'user'   => 1,6000, // for each logged-in user
-        'newbie' => 1,6000, // for each recent account; overrides 'user'
-        'ip'     => 1,6000, // for each anon and recent account
-        'subnet' => 1,6000, // ... with final octet removed
-    ),
-);
 
 define("NS_CONSERVAPEDIA", 100);
 define("NS_CONSERVAPEDIA_TALK", 101);
