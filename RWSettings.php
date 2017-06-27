@@ -237,8 +237,8 @@ $wgNoFollowLinks = true;
 $wgCleanSignatures = false;
 $wgRestrictDisplayTitle = false;
 
-## set this to zero when editing widely used templates, e.g. talkpage
-$wgJobRunRate=1;
+# Don't run jobs from the web, there's /etc/cron.d/mw-job-runner for that
+$wgJobRunRate = 0;
 
 $wgMaxNameChars = 255;
 
