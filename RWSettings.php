@@ -19,7 +19,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		break;
 	}
 } else {
-	throw Exception( 'Unable to determine hostname' );
+	throw new Exception( 'Unable to determine hostname' );
 }
 
 switch ( $host ) {
@@ -40,7 +40,7 @@ switch ( $host ) {
 		break;
 
 	default:
-		throw Exception( 'Invalid host name' . htmlspecialchars( $host ) );
+		throw new Exception( 'Invalid host name' . htmlspecialchars( $host ) );
 }
 
 $wgServer = "http://$host";
@@ -406,6 +406,7 @@ wfLoadExtensions( array(
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
 	'ImageMap',
