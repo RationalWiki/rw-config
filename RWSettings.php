@@ -460,7 +460,8 @@ require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
 #$wgElectionCandidates = array("Avengerofthe BoN", "Applesauce", "Bongolian", "CheeseburgerFace", "David Gerard", "DiamondDisc1", "FuzzyCatPotato", "Hipocrite", "N7.Geth", "Pbfreespace3", "Weaseloid", "Zero", "Rational1", "CorruptUser", "Reverend Black Percy");
 
 ## Intercom
-require_once("$wgExtensionDirectory/Intercom/Intercom.php");
+# Uses sajax_do_call() which was removed in 1.26
+# require_once("$wgExtensionDirectory/Intercom/Intercom.php");
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
 require_once("$wgExtensionDirectory/iw-nofollow/iw-nofollow.php");
