@@ -87,6 +87,7 @@ rw_extensions="
 	ImageFilter
 	Intercom
 	iw-nofollow
+	RandomSelection
 	RationalWiki
 	SigChecker
 	VandalBrake2
@@ -104,7 +105,6 @@ skins="
 make-module "$base" "$gerrit_base/mediawiki/core.git" core
 
 make-extension "$github_base/HydraWiki/mediawiki-embedvideo.git" EmbedVideo
-make-extension "$github_base/inclumedia/RandomSelection.git" RandomSelection
 make-extension "$github_base/JeroenDeDauw/SubPageList.git" SubPageList
 
 for ext in $gerrit_extensions; do
