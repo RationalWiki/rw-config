@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+base=$(realpath $(dirname $0)/../..)
+
+update-module() {
+	echo "Updating $1"
+	git -C "$base/$1" pull -q --rebase
+}
+
+update-module core
+
+cd "$base"
+
+for ext in $(find extensions/* -maxdepth 0 -type d); do
+	update-module "$ext"
+done
+for skin in $(find skins/* -maxdepth 0 -type d); do
+	update-module "$skin"
+done

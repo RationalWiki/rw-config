@@ -557,7 +557,7 @@ $wgDBerrorLog = '/var/log/mw/dberror.log';
 
 $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
 
-$wgShowExceptionDetails = true;
+$wgShowExceptionDetails = false;
 $wgUseSquid = true;
 $wgSquidServers = array('45.33.90.21');
 $wgDisableCounters = true;
@@ -566,9 +566,12 @@ $wgDisableCounters = true;
 $wgEnableDnsBlacklist = true;
 $wgDnsBlacklistUrls = array( 'xbl.spamhaus.org', 'dnsbl.tornevall.org', 'all.s5h.net' );
 
+$wgShellLocale = "en_US.utf8";
+
+# Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
+ExtDynamicPageList::$respectParserCache = true;
+
 foreach ( rwPrivateSettings() as $name => $value ) {
 	$GLOBALS[$name] = $value;
 }
-
-$wgShellLocale = "en_US.utf8";
 
