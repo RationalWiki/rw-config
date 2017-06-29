@@ -425,6 +425,7 @@ wfLoadSkins( array(
 $wgCaptchaClass = 'ReCaptchaNoCaptcha';
 
 ## captcha switch for logins, set to false when bot can't log in
+$wgCaptchaTriggers['edit'] = true;
 $wgCaptchaTriggers['badlogin']      = false;
 
 ##Template edits are costly, prevent spambots from editing them
