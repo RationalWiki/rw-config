@@ -403,7 +403,7 @@ wfLoadExtensions( array(
 	'ImageMap',
 	'InputBox',
 	'Interwiki',
-	'Math',
+//	'Math',
 	'ParserFunctions',
 	'PdfHandler',
 	'RationalWiki',
