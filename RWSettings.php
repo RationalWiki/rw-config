@@ -403,7 +403,7 @@ wfLoadExtensions( array(
 	'ImageMap',
 	'InputBox',
 	'Interwiki',
-//	'Math',
+	'Math',
 	'ParserFunctions',
 	'PdfHandler',
 	'RationalWiki',
@@ -420,6 +420,9 @@ wfLoadSkins( array(
 	'Nostalgia',
 	'Vector'
 ) );
+
+## Math
+$wgMathValidModes = [ 'source', 'png' ];
 
 ## Recaptcha
 $wgCaptchaClass = 'ReCaptchaNoCaptcha';
