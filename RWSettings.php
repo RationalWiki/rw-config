@@ -577,6 +577,11 @@ $wgShellLocale = "en_US.utf8";
 # Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
 ExtDynamicPageList::$respectParserCache = true;
 
+# Less annoying watchlist notifications
+$wgDefaultUserOptions['watchcreations'] = 0;
+$wgDefaultUserOptions['watchdefault'] = 0;
+$wgDefaultUserOptions['enotifwatchlistpages'] = 0;
+
 foreach ( rwPrivateSettings() as $name => $value ) {
 	$GLOBALS[$name] = $value;
 }
