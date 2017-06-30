@@ -15,7 +15,8 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		break;
 
 	case 'ru_rationalwiki':
-		$host = 'ru.rationalwiki.org';
+	case 'staging_rationalwiki':
+		$host = str_replace( '_rationalwiki', '.rationalwiki.org', MW_DB );
 		break;
 	}
 } else {
@@ -29,12 +30,15 @@ switch ( $host ) {
 		$wgLocalInterwikis = array( 'RationalWiki', 'en' );
 		break;
 
-	// case 'qq.rationalwiki.org':
+	case 'staging.rationalwiki.org':
+		$wgDBname = 'staging_rationalwiki';
+		$wgLanguageCode = 'en';
+		$wgLocalInterwikis = array( 'staging' );
+		break;
+
+	// case qq.rationalwiki.org
 	case 'ru.rationalwiki.org':
-		if ( !preg_match( '/^(\w+)\./', $host, $m ) ) {
-			throw new Exception( "domain match failed" );
-		}
-		$wgLanguageCode = $m[1];
+		$wgLanguageCode = str_replace( '.rationalwiki.org', '', $host );
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
 		$wgLocalInterwikis = array( $wgLanguageCode );
 		break;
@@ -42,6 +46,8 @@ switch ( $host ) {
 	default:
 		throw new Exception( 'Invalid host name' . htmlspecialchars( $host ) );
 }
+
+$rwSourceBase = realpath( __DIR__ . '/..' );
 
 $wgServer = "http://$host";
 $wgSitename = "RationalWiki";
@@ -388,8 +394,8 @@ $wgExtraLanguageNames = array( 'en-ownwork' => 'English upload form for own work
 ##  Extensions
 ##
 
-$wgExtensionDirectory = '/srv/rw_common/extensions';
-$wgStyleDirectory = '/srv/rw_common/skins';
+$wgExtensionDirectory = "$rwSourceBase/extensions";
+$wgStyleDirectory = "$rwSourceBase/skins";
 
 wfLoadExtensions( array(
 	'AbuseFilter',
@@ -539,9 +545,6 @@ $wgWikiEditorModules = array(
 
 $wgDefaultUserOptions['usebetatoolbar'] = 1;
 $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
-
-## Temporary
-#$wgShowExceptionDetails = true;
 
 require_once( "$wgExtensionDirectory/LiquidThreads/LiquidThreads.php" );
 $wgLqtTalkPages = false;
