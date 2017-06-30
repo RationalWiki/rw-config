@@ -104,10 +104,11 @@ if ( $wgDBname !== 'rationalwiki' ) {
 }
 
 # Uploads
+$wgUploadPath = '/w/images';
+$wgUploadDirectory = "/bulk/images/{$host}";
+
 if ( $wgDBname === 'rationalwiki' ) {
 	$wgEnableUploads = true;
-	$wgUploadPath = '/w/images';
-	$wgUploadDirectory = "/bulk/images/{$host}";
 } else {
 	$wgEnableUploads = false;
 	$wgUploadNavigationUrl = "http://rationalwiki.org/wiki/Special:Upload";
