@@ -25,6 +25,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 switch ( $host ) {
 	case 'rationalwiki.org':
+		$wgSitename = "RationalWiki";
 		$wgDBname = 'rationalwiki';
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'RationalWiki', 'en' );
@@ -38,6 +39,7 @@ switch ( $host ) {
 
 	// case qq.rationalwiki.org
 	case 'ru.rationalwiki.org':
+		$wgSitename = "РациоВики";
 		$wgLanguageCode = str_replace( '.rationalwiki.org', '', $host );
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
 		$wgLocalInterwikis = array( $wgLanguageCode );
@@ -50,7 +52,6 @@ switch ( $host ) {
 $rwSourceBase = realpath( __DIR__ . '/..' );
 
 $wgServer = "http://$host";
-$wgSitename = "RationalWiki";
 $wgCookieDomain = '.rationalwiki.org';
 
 $wgFavicon ="/favicon.ico";
@@ -581,7 +582,7 @@ $wgShellLocale = "en_US.utf8";
 ExtDynamicPageList::$respectParserCache = true;
 
 # Less annoying watchlist notifications
-$wgDefaultUserOptions['watchcreations'] = 0;
+$wgDefaultUserOptions['watchcreations'] = 1;
 $wgDefaultUserOptions['watchdefault'] = 0;
 $wgDefaultUserOptions['enotifwatchlistpages'] = 0;
 
