@@ -7,9 +7,10 @@ function rwWrapper() {
 		throw new Exception( 'SCRIPT_FILENAME is not set' );
 	}
 	$script = basename( $_SERVER['SCRIPT_FILENAME'] );
-	define( 'MW_INSTALL_PATH', '/srv/rw_common/core' );
+	$base = realpath( __DIR__ . '/..' );
+	define( 'MW_INSTALL_PATH', "$base/core" );
 	putenv( 'MW_INSTALL_PATH=' . MW_INSTALL_PATH );
-	define( 'MW_CONFIG_FILE', '/srv/rw_common/config/RWSettings.php' );
+	define( 'MW_CONFIG_FILE', "$base/config/RWSettings.php" );
 	return MW_INSTALL_PATH  . '/' . $script;
 }
 
