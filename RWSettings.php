@@ -113,7 +113,7 @@ if ( $wgDBname !== 'rationalwiki' ) {
 $wgUploadPath = '/w/images';
 $wgUploadDirectory = "/bulk/images/{$host}";
 
-if ( $wgDBname === 'rationalwiki' ) {
+if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 	$wgEnableUploads = true;
 } else {
 	$wgEnableUploads = false;
