@@ -408,6 +408,7 @@ wfLoadExtensions( array(
 	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
+	'ImageFilter',
 	'ImageMap',
 	'InputBox',
 	'Interwiki',
@@ -518,9 +519,6 @@ $wgFFmpegLocation = '/usr/bin/ffmpeg';
 ## PDF and DjVu support
 $wgDjvuDump = "djvudump";
 $wgDjvuRenderer = "ddjvu";
-
-## Filters NSFW images
-require_once( "$wgExtensionDirectory/ImageFilter/ImageFilter.php" );
 
 ## CirrusSearch
 require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
