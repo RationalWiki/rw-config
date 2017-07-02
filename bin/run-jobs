@@ -9,3 +9,6 @@ for wiki in rationalwiki ru_rationalwiki; do
 	flock -n /var/run/lock/mw-job-runner-$wiki \
 		php /srv/rw_common/core/maintenance/runJobs.php --wiki=$wiki >> /var/log/mw/runJobs.log
 done
+
+flock -n /var/run/lock/mw-job-runner-staging_rationalwiki \
+	php /srv/rw_staging/core/maintenance/runJobs.php --wiki=staging_rationalwiki >> /var/log/mw/runJobs.log
