@@ -61,6 +61,7 @@ gerrit_extensions="
 	Cite
 	ConfirmEdit
 	DynamicPageList
+	Echo
 	Elastica
 	Gadgets
 	ImageMap
