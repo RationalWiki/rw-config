@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
@@ -405,6 +405,7 @@ wfLoadExtensions( array(
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'Echo',
 	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
