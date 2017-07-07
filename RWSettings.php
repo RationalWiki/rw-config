@@ -297,15 +297,6 @@ $wgGroupPermissions['user' ]['move'] = false;
 ## Vandal bin uses the noratelimit right for 15 second limit, may break automated bot scripts
 $wgGroupPermissions['bot']['noratelimit'] = true;
 $wgGroupPermissions['bot']['editprotected'] = false;
-## Irrational user group, bureaucrat-like powers without blocking
-#$wgGroupPermissions['irrational']['noratelimit'] = true;
-#$wgGroupPermissions['irrational']['autopatrol'] = true;
-#$wgGroupPermissions['irrational']['editinterface'] = true;
-#$wgGroupPermissions['irrational']['delete'] = true;
-#$wgGroupPermissions['irrational']['undelete'] = true;
-#$wgGroupPermissions['irrational']['bigdelete'] = true;
-#$wgGroupPermissions['irrational']['editprotected'] = true;
-#$wgGroupPermissions['irrational']['intercom-sendurgent'] = true;
 $wgGroupPermissions['tech']['intercom-sendurgent'] = true;
 $wgGroupPermissions['moderator']['intercom-sendurgent'] = true;
 $wgGroupPermissions['ninja']['edit'] = true;
@@ -328,6 +319,7 @@ $wgGroupPermissions['tech']['edituserjs'] = true;
 $wgGroupPermissions['tech']['bigdelete'] = true;
 $wgGroupPermissions['tech']['import'] = true;
 $wgGroupPermissions['tech']['importupload'] = true;
+
 ## techs that are not sysops
 $wgGroupPermissions['tech']['autopatrol'] = true;
 $wgGroupPermissions['tech']['patrol'] = true;
@@ -381,6 +373,12 @@ $wgGroupPermissions['autopatrolled']['noratelimit'] = true;
 $wgGroupPermissions['autopatrolled']['autopatrol'] = true;
 $wgGroupPermissions['autopatrolled']['skipcaptcha'] = true;
 $wgGroupPermissions['autopatrolled']['upload'] = true;
+
+#techs get gadget rights
+$wgGroupPermissions['tech']['gadgets-edit'] = true;
+$wgGroupPermissions['tech']['gadgets-definition-edit'] = true;
+$wgGroupPermissions['tech']['gadgets-definition-create'] = true;
+$wgGroupPermissions['tech']['gadgets-definition-delete'] = true;
 
 ## Allow uploading from url, requires php5-curl
 $wgAllowCopyUploads = true;
