@@ -403,7 +403,6 @@ wfLoadExtensions( array(
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
-	'Echo',
 	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
@@ -499,6 +498,7 @@ require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
 require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
 require_once("$wgExtensionDirectory/ImageMap/ImageMap.php");
+require_once("$wgExtensionDirectory/Echo/Echo.php");
 
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
