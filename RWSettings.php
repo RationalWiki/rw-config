@@ -72,7 +72,26 @@ $wgEnableWriteAPI = true;
 $wgEnableUserEmail  = true;
 $wgAllowUserJs = true;
 $wgAllowUserCss = true;
-$wgBlockAllowsUTEdit = false;
+
+## Block/ban settings
+## Allow blocked users to edit their user talk page
+$wgBlockAllowsUTEdit = true;
+## Range blocks are a no-no
+$wgBlockCIDRLimit = array (
+       'IPv4' => 16,
+       'IPv6' => 19, # 2^109 = ~6.5x10^32 addresses
+);
+## IP autobans will expire
+$wgAutoblockExpiry = '31415 seconds'; #9 hours
+## Blacklisting IP proxies
+$wgEnableDnsBlacklist = true;
+$wgDnsBlacklistUrls = array( 'xbl.spamhaus.org', 'dnsbl.tornevall.org', 'all.s5h.net' );
+
+## AbuseFilter settings (note: no filters actually block anyone)
+$wgAntiSpoofAccounts = false;
+$wgAbuseFilterBlockDuration = '314159 seconds';
+#uncomment the below when we're off 1.19, set the above to 'indefinite'
+#$wgAbuseFilterAnonBlockDuration = '314159 seconds';
 
 $wgEmergencyContact = "rationalwiki@rationalwiki.org";
 $wgPasswordSender = "rationalwiki@rationalwiki.org";
@@ -252,11 +271,6 @@ $wgMaxNameChars = 255;
 
 $wgAutoConfirmAge = 3600*24;
 $wgAutoConfirmCount = 10;
-
-## Allow blocked users to edit user talk pages
-$wgBlockAllowsUTEdit = true;
-## Range blocks are a no-no
-$wgSysopRangeBans = false;
 
 ## More password attempts, less annoyance
 $wgPasswordAttemptThrottle = array( 'count' => 10, 'seconds' => 300 );
@@ -503,14 +517,6 @@ require_once("$wgExtensionDirectory/Echo/Echo.php");
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
 
-## Abuse filter
-
-## we only need this for abusefilter, we don't need the filtering
-$wgAntiSpoofAccounts = false;
-$wgAbuseFilterBlockDuration = '314159 seconds';
-#uncomment the below when we're off 1.19, set the above to 'indefinite'
-#$wgAbuseFilterAnonBlockDuration = '314159 seconds';
-
 ## Ogg support
 require( "$wgExtensionDirectory/OggHandler/OggHandler.php" );
 $wgFFmpegLocation = '/usr/bin/ffmpeg';
@@ -568,10 +574,6 @@ $wgShowExceptionDetails = false;
 $wgUseSquid = true;
 $wgSquidServers = array('45.33.90.21');
 $wgDisableCounters = true;
-
-#Emergency blocking of IP proxies
-$wgEnableDnsBlacklist = true;
-$wgDnsBlacklistUrls = array( 'xbl.spamhaus.org', 'dnsbl.tornevall.org', 'all.s5h.net' );
 
 $wgShellLocale = "en_US.utf8";
 
