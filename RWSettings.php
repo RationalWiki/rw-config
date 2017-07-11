@@ -73,25 +73,46 @@ $wgEnableUserEmail  = true;
 $wgAllowUserJs = true;
 $wgAllowUserCss = true;
 
-## Block/ban settings
-## Allow blocked users to edit their user talk page
+### Blocks and bans
+# Allow blocked users to edit their user talk page
 $wgBlockAllowsUTEdit = true;
-## Range blocks are a no-no
+# Range blocks are a no-no
 $wgBlockCIDRLimit = array (
        'IPv4' => 16,
        'IPv6' => 19, # 2^109 = ~6.5x10^32 addresses
 );
-## IP autobans will expire
+# IP autobans will expire
 $wgAutoblockExpiry = '31415 seconds'; #9 hours
-## Blacklisting IP proxies
+# Blacklisting IP proxies
 $wgEnableDnsBlacklist = true;
 $wgDnsBlacklistUrls = array( 'xbl.spamhaus.org', 'dnsbl.tornevall.org', 'all.s5h.net' );
 
-## AbuseFilter settings (note: no filters actually block anyone)
+### Vandal brake and vandal bin
+require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
+$wgVandalBrakeConfigAllowMove = false;
+$wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
+$wgVandalBrakeConfigRemoveRights[] = 'upload';
+
+### AbuseFilter
+## AbuseFilter settings
+# Poorly documented, appears to deactivate AntiSpoof and enable logging mode https://github.com/wikimedia/mediawiki-extensions-AntiSpoof/blob/master/AntiSpoofHooks.php
 $wgAntiSpoofAccounts = false;
+# Shows filter performance stats
+$wgAbuseFilterProfile = true;
+# AbuseFilter block settings (note: no filters have block enabled)
 $wgAbuseFilterBlockDuration = '314159 seconds';
-#uncomment the below when we're off 1.19, set the above to 'indefinite'
-#$wgAbuseFilterAnonBlockDuration = '314159 seconds';
+## AbuseFilter user rights
+# Everyone can view (non-hidden) AbuseFilters and AbuseFilter logs
+$wgGroupPermissions['*']['abusefilter-view'] = true;
+$wgGroupPermissions['*']['abusefilter-log'] = true;
+$wgGroupPermissions['*']['abusefilter-log-detail'] = true;
+# Techs can edit AbuseFilters
+$wgGroupPermissions['tech']['abusefilter-modify'] = true;
+$wgGroupPermissions['tech']['abusefilter-modify-restricted'] = true;
+# Techs can view private data from AbuseFilter logs
+$wgGroupPermissions['tech']['abusefilter-private'] = true;
+# Techs can revert all actions of an AbuseFilter
+$wgGroupPermissions['tech']['abusefilter-revert'] = true;
 
 $wgEmergencyContact = "rationalwiki@rationalwiki.org";
 $wgPasswordSender = "rationalwiki@rationalwiki.org";
@@ -372,16 +393,6 @@ $wgRemoveGroups['tech'] = true;
 
 $wgGroupPermissions['moderator']['userrights'] = true;
 
-## user rights for abusefilter
-$wgGroupPermissions['tech']['abusefilter-modify'] = true;
-$wgGroupPermissions['*']['abusefilter-log-detail'] = true;
-$wgGroupPermissions['*']['abusefilter-view'] = true;
-$wgGroupPermissions['*']['abusefilter-log'] = true;
-$wgGroupPermissions['tech']['abusefilter-private'] = true;
-$wgGroupPermissions['tech']['abusefilter-modify-restricted'] = true;
-$wgGroupPermissions['tech']['abusefilter-revert'] = true;
-
-
 #autopatrolled users
 $wgGroupPermissions['autopatrolled']['noratelimit'] = true;
 $wgGroupPermissions['autopatrolled']['autopatrol'] = true;
@@ -460,13 +471,6 @@ $wgCaptchaTriggersOnNamespace[NS_FORUM]['edit'] = true;
 $wgCaptchaTriggersOnNamespace[NS_FORUM_TALK]['edit'] = true;
 
 $wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
-
-## Vandal Brake
-
-require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
-$wgVandalBrakeConfigAllowMove = false;
-$wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
-$wgVandalBrakeConfigRemoveRights[] = 'upload';
 
 ## Paypal buttons
 require_once("$wgExtensionDirectory/RationalWiki/paypal.php");
