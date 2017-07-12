@@ -380,6 +380,12 @@ $wgGroupPermissions['tech']['gadgets-definition-edit'] = true;
 $wgGroupPermissions['tech']['gadgets-definition-create'] = true;
 $wgGroupPermissions['tech']['gadgets-definition-delete'] = true;
 
+#All users can view/restore deleted pages
+$wgGroupPermissions['*']['deletedhistory'] = true;
+$wgGroupPermissions['*']['deletedtext'] = true;
+$wgGroupPermissions['*']['undelete'] = true;
+$wgGroupPermissions['*']['browsearchive'] = true;
+
 ## Allow uploading from url, requires php5-curl
 $wgAllowCopyUploads = true;
 
