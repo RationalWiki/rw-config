@@ -237,7 +237,11 @@ if ( $wgDBname === 'rationalwiki' ) {
 }
 
 $wgNamespacesToBeSearchedDefault = array( 
-       NS_MAIN              => true, 
+	NS_MAIN              => true,
+	NS_USER              => true,
+	NS_PROJECT           => true,
+	NS_CONSERVAPEDIA     => true,
+	NS_FUN               => true
 );
 
 $wgNoFollowLinks = true;
