@@ -416,7 +416,6 @@ wfLoadExtensions( array(
 	'RationalWiki',
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
-	'TitleBlacklist',
 	'WikiEditor',
 ) );
 
