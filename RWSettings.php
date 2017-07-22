@@ -276,6 +276,9 @@ if ( $wgDBname === 'rationalwiki' ) {
 	);
 }
 
+$wgNamespaceAliases['RW'] = NS_PROJECT;
+$wgNamespaceAliases['RW_talk'] = NS_PROJECT_TALK;
+
 $wgNamespacesToBeSearchedDefault = array( 
        NS_MAIN              => true, 
 );
