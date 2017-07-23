@@ -219,6 +219,7 @@ $wgCacheEpoch = '20170607000000';
 
 #$wgReadOnly = "Update in progress see tech blog.";
 
+### Namespaces
 define("NS_CONSERVAPEDIA", 100);
 define("NS_CONSERVAPEDIA_TALK", 101);
 define("NS_ESSAY", 102);
@@ -276,8 +277,10 @@ if ( $wgDBname === 'rationalwiki' ) {
 	);
 }
 
-$wgNamespaceAliases['RW'] = NS_PROJECT;
-$wgNamespaceAliases['RW_talk'] = NS_PROJECT_TALK;
+$wgNamespaceAliases = array(
+        'RW' => NS_PROJECT,
+        'RW_talk' => NS_PROJECT_TALK
+    );
 
 $wgNamespacesToBeSearchedDefault = array( 
        NS_MAIN              => true, 
