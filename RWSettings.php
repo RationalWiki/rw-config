@@ -51,7 +51,8 @@ switch ( $host ) {
 
 $rwSourceBase = realpath( __DIR__ . '/..' );
 
-$wgServer = "http://$host";
+$wgServer = "https://$host";
+$wgSecureLogin = true;
 $wgCookieDomain = '.rationalwiki.org';
 
 $wgFavicon ="/favicon.ico";
@@ -158,13 +159,13 @@ if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 	$wgEnableUploads = true;
 } else {
 	$wgEnableUploads = false;
-	$wgUploadNavigationUrl = "http://rationalwiki.org/wiki/Special:Upload";
+	$wgUploadNavigationUrl = "https://rationalwiki.org/wiki/Special:Upload";
 
 	$wgForeignFileRepos[] = array(
 		'class' => 'ForeignDBViaLBRepo',
 		'name' => 'shared',
 		'directory' => '/bulk/images/rationalwiki.org',
-		'url' => 'http://rationalwiki.org/w/images',
+		'url' => 'https://rationalwiki.org/w/images',
 		'wiki' => 'rationalwiki',
 		'hasSharedCache' => true,
 	);
@@ -193,7 +194,7 @@ $wgDefaultSkin = 'vector';
 ## License and Creative Commons licenses are supported so far.
 $wgEnableCreativeCommonsRdf = true;
 $wgRightsPage = "RationalWiki:Copyrights"; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "http://creativecommons.org/licenses/by-sa/3.0/";
+$wgRightsUrl = "https://creativecommons.org/licenses/by-sa/3.0/";
 $wgRightsText = "CC-BY-SA 3.0, or any later version";
 #$wgRightsIcon = "http://i.creativecommons.org/l/by-sa/3.0/88x31.png";
 #improve performance, saves a dns query, png is optimized to save a few kilobytes
@@ -591,4 +592,3 @@ $wgDefaultUserOptions['enotifwatchlistpages'] = 0;
 foreach ( rwPrivateSettings() as $name => $value ) {
 	$GLOBALS[$name] = $value;
 }
-
