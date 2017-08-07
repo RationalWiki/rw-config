@@ -51,7 +51,7 @@ switch ( $host ) {
 
 $rwSourceBase = realpath( __DIR__ . '/..' );
 
-$wgServer = "https://$host";
+$wgServer = "//$host";
 $wgSecureLogin = true;
 $wgCookieDomain = '.rationalwiki.org';
 
