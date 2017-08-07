@@ -88,12 +88,6 @@ $wgAutoblockExpiry = '31415 seconds'; #9 hours
 $wgEnableDnsBlacklist = true;
 $wgDnsBlacklistUrls = array( 'xbl.spamhaus.org', 'dnsbl.tornevall.org', 'all.s5h.net' );
 
-### Vandal brake and vandal bin
-require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
-$wgVandalBrakeConfigAllowMove = false;
-$wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
-$wgVandalBrakeConfigRemoveRights[] = 'upload';
-
 ### AbuseFilter
 ## AbuseFilter settings
 # Poorly documented, appears to deactivate AntiSpoof and enable logging mode https://github.com/wikimedia/mediawiki-extensions-AntiSpoof/blob/master/AntiSpoofHooks.php
@@ -452,6 +446,12 @@ wfLoadSkins( array(
 	'Nostalgia',
 	'Vector'
 ) );
+
+### Vandal brake and vandal bin
+require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
+$wgVandalBrakeConfigAllowMove = false;
+$wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
+$wgVandalBrakeConfigRemoveRights[] = 'upload';
 
 ## Math
 $wgMathValidModes = [ 'source', 'png' ];
