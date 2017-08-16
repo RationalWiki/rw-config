@@ -486,8 +486,8 @@ require_once("$wgExtensionDirectory/Wigo3/multi.php");
 require_once("$wgExtensionDirectory/bestof/bestof.php");
 require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
 require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
-#$wgElectionName = "Mods2017";
-#$wgElectionCandidates = array("Avengerofthe BoN", "Applesauce", "Bongolian", "CheeseburgerFace", "David Gerard", "DiamondDisc1", "FuzzyCatPotato", "Hipocrite", "N7.Geth", "Pbfreespace3", "Weaseloid", "Zero", "Rational1", "CorruptUser", "Reverend Black Percy");
+$wgElectionName = "Board2017";
+$wgElectionCandidates = array("Spud", "Human", "Ikanreed", "Colonel Sanders");
 
 ## Intercom
 # Uses sajax_do_call() which was removed in 1.26
