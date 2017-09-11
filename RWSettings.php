@@ -318,6 +318,7 @@ $wgGroupPermissions['autoconfirmed']['upload'] = true;
 $wgGroupPermissions['autoconfirmed']['upload_by_url'] = true;
 ## delete and suppress (hide from sysops) revisions
 $wgGroupPermissions['sysop']['deleterevision']  = true;
+$wgGroupPermissions['sysop']['deletelogentry'] = true;
 $wgGroupPermissions['moderator']['suppressrevision'] = true;
 $wgGroupPermissions['moderator']['suppressionlog'] = true;
 $wgGroupPermissions['tech']['suppressrevision'] = true;
