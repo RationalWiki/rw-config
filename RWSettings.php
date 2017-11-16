@@ -20,7 +20,8 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		break;
 	}
 } else {
-	throw new Exception( 'Unable to determine hostname' );
+#	throw new Exception( 'Unable to determine hostname' );
+		$host = 'rationalwiki.org';
 }
 
 switch ( $host ) {
