@@ -149,6 +149,11 @@ if ( $wgDBname !== 'rationalwiki' ) {
 # Uploads
 $wgUploadPath = '/w/images';
 $wgUploadDirectory = "/bulk/images/{$host}";
+# max upload size = 10 mb (1024 * 1024 * 10) https://www.mediawiki.org/wiki/Manual:$wgMaxUploadSize
+$wgMaxUploadSize = 10485760;
+# allow uploads from URL https://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads
+$wgAllowCopyUploads = true;
+$wgCopyUploadsFromSpecialUpload = true;
 
 if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 	$wgEnableUploads = true;
@@ -322,6 +327,7 @@ $wgGroupPermissions['autoconfirmed']['move'] = true;
 $wgGroupPermissions['user']['upload'] = false;
 $wgGroupPermissions['autoconfirmed']['upload'] = true;
 $wgGroupPermissions['autoconfirmed']['upload_by_url'] = true;
+$wgGroupPermissions['sysop']['upload_by_url'] = true;
 ## delete and suppress (hide from sysops) revisions
 $wgGroupPermissions['sysop']['deleterevision']  = true;
 $wgGroupPermissions['sysop']['deletelogentry'] = true;
