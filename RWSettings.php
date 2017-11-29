@@ -149,6 +149,8 @@ if ( $wgDBname !== 'rationalwiki' ) {
 # Uploads
 $wgUploadPath = '/w/images';
 $wgUploadDirectory = "/bulk/images/{$host}";
+# max upload size = 10 mb (1024 * 1024 * 10) https://www.mediawiki.org/wiki/Manual:$wgMaxUploadSize
+$wgMaxUploadSize = 10485760;
 
 if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 	$wgEnableUploads = true;
