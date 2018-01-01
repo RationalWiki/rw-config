@@ -246,8 +246,8 @@ if ( $wgDBname === 'rationalwiki' ) {
 		NS_RECIPE => "Recipe",	
 		NS_RECIPE_TALK => "Recipe_talk",	
 		NS_FORUM => "Forum",
-		NS_FORUM_TALK => "Forum_talk"
-		NS_DRAFT => "Draft"
+		NS_FORUM_TALK => "Forum_talk",
+		NS_DRAFT => "Draft",
 		NS_DRAFT_TALK => "Draft_talk"
 	);
 
