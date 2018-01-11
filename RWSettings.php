@@ -595,6 +595,11 @@ $wgShellLocale = "en_US.utf8";
 # Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
 ExtDynamicPageList::$respectParserCache = true;
 
+$wgElectionName = "Mods2018";
+$wgElectionCandidates = array("Bigs", "Bongolian", "CheeseburgerFace", "Christopher", "Cosmikdebris", "CowHouse", "DiamondDisc1", "Kazitor", "LeftyGreenMario", "Nerd", "Pbfreespace3", "Spud", "Xbony2"
+);
+$wgElectionStoreDir = "$IP/../election";
+
 # Less annoying watchlist notifications
 $wgDefaultUserOptions['watchcreations'] = 1;
 $wgDefaultUserOptions['watchdefault'] = 0;
