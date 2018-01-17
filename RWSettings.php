@@ -596,8 +596,7 @@ $wgShellLocale = "en_US.utf8";
 ExtDynamicPageList::$respectParserCache = true;
 
 #$wgElectionName = "Mods2018";
-#$wgElectionCandidates = array("Bigs", "Bongolian", "CheeseburgerFace", "Christopher", "Cosmikdebris", "CowHouse", "DiamondDisc1", "Kazitor", "LeftyGreenMario", "Nerd", "Pbfreespace3", "Spud", "Xbony2"
-);
+#$wgElectionCandidates = array("Bigs", "Bongolian", "CheeseburgerFace", "Christopher", "Cosmikdebris", "CowHouse", "DiamondDisc1", "Kazitor", "LeftyGreenMario", "Nerd", "Pbfreespace3", "Spud", "Xbony2");
 #$wgElectionStoreDir = "$IP/../election";
 
 # Less annoying watchlist notifications
