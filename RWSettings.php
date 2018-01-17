@@ -588,17 +588,17 @@ $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noinde
 $wgShowExceptionDetails = true;
 $wgUseSquid = true;
 $wgSquidServers = array('45.33.90.21', '127.0.0.1');
-$wgDisableCounters = true;
+$wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
 
 # Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
 ExtDynamicPageList::$respectParserCache = true;
 
-$wgElectionName = "Mods2018";
-$wgElectionCandidates = array("Bigs", "Bongolian", "CheeseburgerFace", "Christopher", "Cosmikdebris", "CowHouse", "DiamondDisc1", "Kazitor", "LeftyGreenMario", "Nerd", "Pbfreespace3", "Spud", "Xbony2"
+#$wgElectionName = "Mods2018";
+#$wgElectionCandidates = array("Bigs", "Bongolian", "CheeseburgerFace", "Christopher", "Cosmikdebris", "CowHouse", "DiamondDisc1", "Kazitor", "LeftyGreenMario", "Nerd", "Pbfreespace3", "Spud", "Xbony2"
 );
-$wgElectionStoreDir = "$IP/../election";
+#$wgElectionStoreDir = "$IP/../election";
 
 # Less annoying watchlist notifications
 $wgDefaultUserOptions['watchcreations'] = 1;
