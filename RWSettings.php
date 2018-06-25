@@ -230,6 +230,8 @@ define("NS_RECIPE", 108);
 define("NS_RECIPE_TALK", 109);
 define("NS_FORUM", 110);
 define("NS_FORUM_TALK", 111);
+define("NS_DRAFT",112);
+define("NS_DRAFT_TALK",113);
 
 if ( $wgDBname === 'rationalwiki' ) {
 	$wgExtraNamespaces = array(
@@ -244,7 +246,9 @@ if ( $wgDBname === 'rationalwiki' ) {
 		NS_RECIPE => "Recipe",	
 		NS_RECIPE_TALK => "Recipe_talk",	
 		NS_FORUM => "Forum",
-		NS_FORUM_TALK => "Forum_talk"
+		NS_FORUM_TALK => "Forum_talk",
+		NS_DRAFT => "Draft",
+		NS_DRAFT_TALK => "Draft_talk"
 	);
 
 	$wgNamespacesWithSubpages = array(
@@ -271,7 +275,9 @@ if ( $wgDBname === 'rationalwiki' ) {
 		NS_RECIPE                => true,
 		NS_RECIPE_TALK           => true,
 		NS_FORUM                 => true,
-		NS_FORUM_TALK            => true
+		NS_FORUM_TALK            => true,
+		NS_DRAFT                 => false,
+		NS_DRAFT_TALK            => true
 	);
 }
 
