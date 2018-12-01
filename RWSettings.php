@@ -614,4 +614,4 @@ foreach ( rwPrivateSettings() as $name => $value ) {
 	$GLOBALS[$name] = $value;
 }
 
-$wgPasswordAttemptThrottle = [ [ 'count' => 5, 'seconds' => 60 ], [ 'count' => 10, 'seconds' => 300 ], [ 'count' => 50, 'seconds' => 60*60*48 ], ];
+$wgPasswordAttemptThrottle = [ [ 'count' => 5, 'seconds' => 60 ], [ 'count' => 5, 'seconds' => 300 ], [ 'count' => 50, 'seconds' => 60*60*48 ], ];
