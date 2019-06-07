@@ -14,6 +14,10 @@ update-module core
 cd "$base"
 
 for ext in $(find extensions/* -maxdepth 0 -type d); do
+	if [ "$ext" == extensions/EmbedVideo ]; then
+		# 2.7.4 is the last to support MW 1.27, but there's no branch
+		continue
+	fi
 	update-module "$ext"
 done
 for skin in $(find skins/* -maxdepth 0 -type d); do
