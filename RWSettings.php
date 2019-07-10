@@ -594,7 +594,8 @@ $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noinde
 
 $wgShowExceptionDetails = true;
 $wgUseSquid = true;
-$wgSquidServers = array('45.33.90.21', '127.0.0.1');
+$wgSquidServersNoPurge = array('45.33.90.21', '127.0.0.1');
+$wgSquidServers = array('45.33.90.21:6081');
 $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
