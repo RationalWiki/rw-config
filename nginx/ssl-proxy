@@ -1,0 +1,95 @@
+server {
+    listen [::]:80 ipv6only=on;
+    server_name rationalwiki.org www.rationalwiki.org rationalwiki.com www.rationalwiki.com rationalwiki.net www.rationalwiki.net www.evolutionwiki.com evolutionwiki.org www.evolutionwiki.org evolutionwiki.net www.evolutionwiki.net evowiki.org www.evowiki.org rationalbeta.com www.rationalbeta.com;
+    location /.well-known/acme-challenge {            
+      alias /var/www/html/.well-known/acme-challenge;            
+    }  
+    location / {
+      return 301 https://$server_name$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    server_name rationalwiki.org www.rationalwiki.org rationalwiki.com www.rationalwiki.com rationalwiki.net www.rationalwiki.net www.evolutionwiki.com evolutionwiki.org www.evolutionwiki.org evolutionwiki.net www.evolutionwiki.net evowiki.org www.evowiki.org rationalbeta.com www.rationalbeta.com ;
+    location /.well-known/acme-challenge {            
+      alias /var/www/html/.well-known/acme-challenge;            
+    }  
+    location / {
+      return 301 https://$server_name$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    server_name ru.rationalwiki.org www.ru.rationalwiki.org ru.rationalwiki.com www.ru.rationalwiki.com ru.rationalwiki.net www.ru.rationalwiki.net ;
+    location /.well-known/acme-challenge {            
+      alias /var/www/html/.well-known/acme-challenge;            
+    }  
+    location / {
+      return 301 https://$server_name$request_uri;
+    }
+}
+
+server {
+    listen [::]:80;
+    server_name staging.rationalwiki.org;
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
+    location / {
+      return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    server_name staging.rationalwiki.org;
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
+    location / {
+      return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen      8080;
+    server_name cache1.rationalwiki.org rationalwiki.org www.rationalwiki.org rationalwiki.com www.rationalwiki.com rationalwiki.net www.rationalwiki.net ru.rationalwiki.org www.ru.rationalwiki.org ru.rationalwiki.com www.ru.rationalwiki.com ru.rationalwiki.net www.ru.rationalwiki.net;
+    location / {
+        alias /var/www/html/;
+    }
+}
+
+server {
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/rationalwiki.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/rationalwiki.org/privkey.pem;
+
+#    listen 443 ssl http2;
+    listen [::]:443 ssl http2 ipv6only=off;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+    ssl_prefer_server_ciphers on;
+    ssl_dhparam /etc/nginx/dhparams.pem;
+
+    access_log /var/log/nginx/secure_server_access.log;
+    error_log /var/log/nginx/secure_server_error.log;
+
+    # Proxy any requests to the local varnish instance
+    location / {
+        proxy_set_header "X-Forwarded-For" $remote_addr;
+
+        proxy_set_header        Host    $host;
+        proxy_redirect http:// https://;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-Proto https;
+        proxy_set_header        X-Forwarded-Port 443;
+
+        proxy_pass http://127.0.0.1:6081;
+
+        proxy_connect_timeout   5s;
+        proxy_read_timeout      300s;
+    }
+
+}
