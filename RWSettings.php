@@ -149,7 +149,7 @@ if ( $wgDBname !== 'rationalwiki' ) {
 
 # Uploads
 $wgUploadPath = '/w/images';
-$wgUploadDirectory = "/bulk/images/{$host}";
+$wgUploadDirectory = "/mnt/images1/current/{$host}";
 # max upload size = 10 mb (1024 * 1024 * 10) https://www.mediawiki.org/wiki/Manual:$wgMaxUploadSize
 $wgMaxUploadSize = 10485760;
 
@@ -162,7 +162,7 @@ if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 	$wgForeignFileRepos[] = array(
 		'class' => 'ForeignDBViaLBRepo',
 		'name' => 'shared',
-		'directory' => '/bulk/images/rationalwiki.org',
+		'directory' => '/mnt/images1/current/rationalwiki.org',
 		'url' => 'https://rationalwiki.org/w/images',
 		'wiki' => 'rationalwiki',
 		'hasSharedCache' => true,
