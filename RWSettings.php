@@ -124,7 +124,7 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
-$wgDBserver         = "45.33.72.223";
+$wgDBserver         = "db1.private.rationalwiki.org";
 $wgDBuser           = "rw_web";
 $wgDBprefix         = "";
 
