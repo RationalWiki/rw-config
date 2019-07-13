@@ -124,7 +124,7 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
-$wgDBserver         = "localhost";
+$wgDBserver         = "45.33.72.223";
 $wgDBuser           = "rw_web";
 $wgDBprefix         = "";
 
@@ -216,7 +216,7 @@ $wgCacheDirectory = "/bulk/cache/{$wgDBname}";
 # Update this timestamp to clear the parser cache
 $wgCacheEpoch = '20170607000000';
 
-$wgReadOnly = "Database server migration in progress, please wait one minute";
+#$wgReadOnly = "Database server migration in progress, please wait one minute";
 
 ### Namespaces
 define("NS_CONSERVAPEDIA", 100);
