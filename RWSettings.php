@@ -216,7 +216,7 @@ $wgCacheDirectory = "/bulk/cache/{$wgDBname}";
 # Update this timestamp to clear the parser cache
 $wgCacheEpoch = '20170607000000';
 
-#$wgReadOnly = "Update in progress see tech blog.";
+$wgReadOnly = "Database server migration in progress, please wait one minute";
 
 ### Namespaces
 define("NS_CONSERVAPEDIA", 100);
