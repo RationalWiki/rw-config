@@ -5,6 +5,7 @@
 fonts="
 culmus
 culmus-fancy
+fonts-alee
 fonts-arabeyes
 fonts-arphic-ukai
 fonts-arphic-uming
@@ -51,7 +52,6 @@ fonts-unfonts-core
 fonts-unfonts-extra
 fonts-vlgothic
 texlive-fonts-recommended
-ttf-alee
 ttf-ubuntu-font-family
 ttf-wqy-zenhei
 xfonts-100dpi

@@ -35,8 +35,8 @@ make-module() {
 		return
 	fi
 	# If the release branch doesn't exist, use master
-	if ! git clone -b "$mw_release_branch" "$2" "$3"; then
-		git clone "$2" "$3"
+	if ! git clone -c core.sharedRepository=group -b "$mw_release_branch" "$2" "$3"; then
+		git clone -c core.sharedRepository=group "$2" "$3"
 	fi
 	# Run composer if there is a composer.json
 	cd "$3"
