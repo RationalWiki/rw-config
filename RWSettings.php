@@ -124,7 +124,7 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
-$wgDBserver         = "db1.private.rationalwiki.org";
+$wgDBserver         = "db1.rationalwiki.org";
 $wgDBuser           = "rw_web";
 $wgDBprefix         = "";
 
@@ -551,7 +551,7 @@ $wgDjvuRenderer = "ddjvu";
 require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
 $wgSearchType = 'CirrusSearch';
 
-$wgCirrusSearchClusters = [ 'default' => [ 'search1.private.rationalwiki.org' ] ];
+$wgCirrusSearchClusters = [ 'default' => [ 'search1.rationalwiki.org' ] ];
 
 ## extension to hide the page title
 require_once("$wgExtensionDirectory/RationalWiki/notitle.php");
