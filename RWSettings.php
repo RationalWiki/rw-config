@@ -551,6 +551,8 @@ $wgDjvuRenderer = "ddjvu";
 require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
 $wgSearchType = 'CirrusSearch';
 
+$wgCirrusSearchClusters = [ 'default' => [ 'search1.private.rationalwiki.org' ] ];
+
 ## extension to hide the page title
 require_once("$wgExtensionDirectory/RationalWiki/notitle.php");
 ## extension to change the page title style
@@ -583,7 +585,8 @@ $logGroups = array(
 	'CirrusSearch',
 	'exception',
 	'lqt',
-	'slow-parse'
+	'slow-parse',
+	'FSFileBackend',
 );
 foreach ( $logGroups as $logGroup ) {
 	$wgDebugLogGroups[$logGroup] = "/var/log/mw/$logGroup.log";
@@ -593,6 +596,7 @@ $wgDBerrorLog = '/var/log/mw/dberror.log';
 $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
 
 $wgShowExceptionDetails = true;
+$wgShowHostnames = true;
 $wgUseSquid = true;
 $wgSquidServersNoPurge = array('45.33.90.21', '127.0.0.1');
 $wgSquidServers = array('45.33.90.21:6081');
