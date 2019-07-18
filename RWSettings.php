@@ -598,8 +598,17 @@ $wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noinde
 $wgShowExceptionDetails = true;
 $wgShowHostnames = true;
 $wgUseSquid = true;
-$wgSquidServersNoPurge = array('45.33.90.21', '127.0.0.1');
-$wgSquidServers = array('45.33.90.21:6081');
+# Allow XFF headers from cache servers
+$wgSquidServersNoPurge = array(
+	'45.33.90.21', # cache1
+	'45.56.102.80', # cache2
+	'127.0.0.1'
+);
+# Send PURGE requests to the cache servers on their varnish port
+$wgSquidServers = array(
+	'45.33.90.21:6081', # cache1
+	'45.56.102.80:6081' # cache2
+);
 $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
