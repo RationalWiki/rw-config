@@ -5,17 +5,8 @@ vcl 4.0;
 
 # set default backend if no server cluster specified
 backend default {
-    .host = "45.56.102.80";
+    .host = "198.74.57.169";
     .port = "80";
-}
-
-# access control list for "purge": open to only localhost and other local nodes
-acl purge {
-    "173.255.233.133";
-    "45.56.102.80";
-    "127.0.0.1";
-    "::1";
-    "192.168.0.0/16";
 }
 
 # vcl_recv is called whenever a request is received
@@ -31,11 +22,7 @@ sub vcl_recv {
     # This uses the ACL action called "purge". Basically if a request to
     # PURGE the cache comes from anywhere other than the purge list, ignore it.
     if (req.method == "PURGE") {
-        if (!client.ip ~ purge) {
-            return (synth(405, "Not allowed."));
-        } else {
-            return (purge);
-        }
+        return (purge);
     }
 
     # Pass any requests that Varnish does not understand straight to the backend.
