@@ -138,9 +138,6 @@ if ( $wgDBname !== 'rationalwiki' ) {
 	$wgSharedTables[] = 'ipblocks';
 	$wgSharedTables[] = 'vandals';
 	$wgSharedTables[] = 'updates';
-	$wgSharedTables[] = 'intercom_list';
-	$wgSharedTables[] = 'intercom_message';
-	$wgSharedTables[] = 'intercom_read';
 	$wgSharedTables[] = 'user_message_state';
 	$wgSharedTables[] = 'abuse_filter_action';
 	$wgSharedTables[] = 'abuse_filter';
@@ -344,8 +341,6 @@ $wgGroupPermissions['user' ]['move'] = false;
 ## Vandal bin uses the noratelimit right for 15 second limit, may break automated bot scripts
 $wgGroupPermissions['bot']['noratelimit'] = true;
 $wgGroupPermissions['bot']['editprotected'] = false;
-$wgGroupPermissions['tech']['intercom-sendurgent'] = true;
-$wgGroupPermissions['moderator']['intercom-sendurgent'] = true;
 $wgGroupPermissions['ninja']['edit'] = true;
 ## prevent sysops from accessing dangerous stuff (Oct 27 2009)
 $wgGroupPermissions['sysop']['editinterface'] = false;
@@ -467,7 +462,6 @@ wfLoadSkins( array(
 ### Vandal brake and vandal bin
 require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
 $wgVandalBrakeConfigAllowMove = false;
-$wgVandalBrakeConfigRemoveRights[] = 'intercom-sendmessage';
 $wgVandalBrakeConfigRemoveRights[] = 'upload';
 
 ## Math
@@ -505,10 +499,6 @@ require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
 #$wgElectionName = "Board2017";
 #$wgElectionCandidates = array("Spud", "Human", "Ikanreed", "Colonel Sanders");
 #$wgElectionStoreDir = "$IP/../election";
-
-## Intercom
-# Uses sajax_do_call() which was removed in 1.26
-# require_once("$wgExtensionDirectory/Intercom/Intercom.php");
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
 require_once("$wgExtensionDirectory/iw-nofollow/iw-nofollow.php");

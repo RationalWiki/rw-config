@@ -86,7 +86,6 @@ rw_extensions="
 	RWEditcount
 	RWElection
 	ImageFilter
-	Intercom
 	iw-nofollow
 	RandomSelection
 	RationalWiki
