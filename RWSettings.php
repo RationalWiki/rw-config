@@ -144,7 +144,7 @@ if ( $wgDBname !== 'rationalwiki' ) {
 	$wgSharedTables[] = 'user_message_state';
 	$wgSharedTables[] = 'abuse_filter_action';
 	$wgSharedTables[] = 'abuse_filter';
-	$wgSharedTables[] = 'wigotext';	
+	$wgSharedTables[] = 'wigotext';
 }
 
 # Uploads
@@ -244,8 +244,8 @@ if ( $wgDBname === 'rationalwiki' ) {
 		NS_DEBATE_TALK => "Debate_talk",
 		NS_FUN => "Fun",
 		NS_FUN_TALK => "Fun_talk",
-		NS_RECIPE => "Recipe",	
-		NS_RECIPE_TALK => "Recipe_talk",	
+		NS_RECIPE => "Recipe",
+		NS_RECIPE_TALK => "Recipe_talk",
 		NS_FORUM => "Forum",
 		NS_FORUM_TALK => "Forum_talk",
 		NS_DRAFT => "Draft",
@@ -255,16 +255,16 @@ if ( $wgDBname === 'rationalwiki' ) {
 	$wgNamespacesWithSubpages = array(
 		NS_MAIN                  => false,
 		NS_TALK                  => true,
-		NS_USER                  => true, 
+		NS_USER                  => true,
 		NS_USER_TALK             => true,
-		NS_PROJECT               => true, 
-		NS_PROJECT_TALK          => true, 
-		NS_IMAGE_TALK            => true, 
+		NS_PROJECT               => true,
+		NS_PROJECT_TALK          => true,
+		NS_FILE_TALK            => true,
 		NS_TEMPLATE              => true,
-		NS_TEMPLATE_TALK         => true, 
+		NS_TEMPLATE_TALK         => true,
 		NS_HELP                  => true,
-		NS_HELP_TALK             => true, 
-		NS_CATEGORY_TALK         => true, 
+		NS_HELP_TALK             => true,
+		NS_CATEGORY_TALK         => true,
 		NS_CONSERVAPEDIA         => true,
 		NS_CONSERVAPEDIA_TALK    => true,
 		NS_ESSAY                 => true,
@@ -287,8 +287,8 @@ $wgNamespaceAliases = array(
         'RW_talk' => NS_PROJECT_TALK
     );
 
-$wgNamespacesToBeSearchedDefault = array( 
-       NS_MAIN              => true, 
+$wgNamespacesToBeSearchedDefault = array(
+       NS_MAIN              => true,
 );
 
 $wgNoFollowLinks = true;
@@ -516,10 +516,10 @@ require_once("$wgExtensionDirectory/iw-nofollow/iw-nofollow.php");
 ## Renameuser
 $wgGroupPermissions['moderator']['renameuser'] = true;
 $wgGroupPermissions['tech']['renameuser'] = true;
- 
+
 ## [[Special:Editcount]]
 require_once("$wgExtensionDirectory/RWEditcount/RWEditcount.php");
- 
+
 ## Bible tag for quick and easy Bible-thumping
 require_once("$wgExtensionDirectory/RationalWiki/bible.php");
 
@@ -557,8 +557,6 @@ $wgCirrusSearchClusters = [ 'default' => [ 'search1.rationalwiki.org' ] ];
 require_once("$wgExtensionDirectory/RationalWiki/notitle.php");
 ## extension to change the page title style
 require_once("$wgExtensionDirectory/RationalWiki/styletitle.php");
-## checks if a new comment is signed
-require_once("$wgExtensionDirectory/SigChecker/SigChecker.php");
 
 $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
