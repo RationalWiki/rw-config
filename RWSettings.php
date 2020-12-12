@@ -106,12 +106,10 @@ $wgGroupPermissions['*']['abusefilter-log-detail'] = true;
 # Techs can edit AbuseFilters
 $wgGroupPermissions['tech']['abusefilter-modify'] = true;
 $wgGroupPermissions['tech']['abusefilter-modify-restricted'] = true;
-# Techs can view private data from AbuseFilter logs
-$wgGroupPermissions['tech']['abusefilter-private'] = true;
+# Techs cannot view private data from AbuseFilter logs (e.g.IPs)
+$wgGroupPermissions['tech']['abusefilter-private'] = false;
 # Techs can revert all actions of an AbuseFilter
 $wgGroupPermissions['tech']['abusefilter-revert'] = true;
-# Tech shouldn't be enough to see IPs
-$wgGroupPermissions['Tech']['abusefilter-privatedetails'] = false; 	
 
 $wgEmergencyContact = "rationalwiki@rationalwiki.org";
 $wgPasswordSender = "rationalwiki@rationalwiki.org";
