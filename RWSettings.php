@@ -351,6 +351,7 @@ $wgGroupPermissions['sysop']['import'] = false;
 $wgGroupPermissions['sysop']['importupload'] = false;
 $wgDeleteRevisionsLimit = 2000;
 $wgGroupPermissions['sysop']['blockemail'] = false;
+$wgGroupPermissions['sysop']['mergehistory'] = false;
 $wgGroupPermissions['moderator']['blockemail'] = true;
 
 ## give the above to techs
@@ -361,6 +362,7 @@ $wgGroupPermissions['tech']['edituserjs'] = true;
 $wgGroupPermissions['tech']['bigdelete'] = true;
 $wgGroupPermissions['tech']['import'] = true;
 $wgGroupPermissions['tech']['importupload'] = true;
+$wgGroupPermissions['tech']['mergehistory'] = false;
 
 ## techs that are not sysops
 $wgGroupPermissions['tech']['autopatrol'] = true;
@@ -496,9 +498,6 @@ require_once("$wgExtensionDirectory/Wigo3/multi.php");
 require_once("$wgExtensionDirectory/bestof/bestof.php");
 require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
 require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
-#$wgElectionName = "Board2017";
-#$wgElectionCandidates = array("Spud", "Human", "Ikanreed", "Colonel Sanders");
-#$wgElectionStoreDir = "$IP/../election";
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
 require_once("$wgExtensionDirectory/iw-nofollow/iw-nofollow.php");
@@ -604,8 +603,8 @@ $wgShellLocale = "en_US.utf8";
 # Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
 ExtDynamicPageList::$respectParserCache = true;
 
-#$wgElectionName = "Mods2019-11";
-#$wgElectionCandidates = array("Ace McWicked", "Ariel31459", "Avida Dollars", "Bongolian", "GrammarCommie", "LeftyGreenMario", "Oxyaena", "RWRW", "Rationalzombie94", "RightyBlueLuigi", "RipCityLiberal", "Scream!!", "Spud");
+#$wgElectionName = "Mods2020";
+#$wgElectionCandidates = array("Ace McWicked", "Ariel31459", "Bongolian", "CircularReasoning", "Hastur", "RWRW", "Rockford the Roe", "Sirius", "Spud", "Summa Atheologica");
 #$wgElectionStoreDir = "$IP/../election";
 
 # Less annoying watchlist notifications
