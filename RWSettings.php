@@ -323,7 +323,7 @@ $wgForeignFileRepos[] = array(
 ## These must be the same on all wikis, since we use a shared user_groups table
 #$wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['autoconfirmed']['rollback'] = true;
-$wgGroupPermissions['autoconfirmed']['move'] = true;
+$wgGroupPermissions['sysop']['move'] = true;
 ## Vandals were uploading porn, so only autoconfirmed users can upload
 $wgGroupPermissions['user']['upload'] = false;
 $wgGroupPermissions['autoconfirmed']['upload'] = true;
