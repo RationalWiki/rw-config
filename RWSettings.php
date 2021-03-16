@@ -452,6 +452,7 @@ wfLoadExtensions( array(
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
 	'WikiEditor',
+	'Wigo3',
 ) );
 
 wfLoadSkins( array(
@@ -489,15 +490,11 @@ $wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
 ## Paypal buttons
 require_once("$wgExtensionDirectory/RationalWiki/paypal.php");
 
-## Wigo and other polls
-
-require_once("$wgExtensionDirectory/Wigo3/wigo3.php");
+## Wigo
 $wgWigo3ConfigStoreIPs = true;
-require_once("$wgExtensionDirectory/Wigo3/slider.php");
-require_once("$wgExtensionDirectory/Wigo3/checkbox.php");
-require_once("$wgExtensionDirectory/Wigo3/multi.php");
-require_once("$wgExtensionDirectory/bestof/bestof.php");
-require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
+$wgWigo3ReplaceNextpoll = true;
+
+## Board elections
 require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
