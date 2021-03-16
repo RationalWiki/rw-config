@@ -581,7 +581,7 @@ foreach ( $logGroups as $logGroup ) {
 }
 $wgDBerrorLog = '/var/log/mw/dberror.log';
 
-$wgNamespaceRobotPolicies = array( NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
+$wgNamespaceRobotPolicies = array( NS_DRAFT => 'noindex', NS_DRAFT_TALK => 'noindex', NS_USER => 'noindex', NS_USER_TALK => 'noindex' );
 
 $wgShowExceptionDetails = true;
 $wgShowHostnames = true;
