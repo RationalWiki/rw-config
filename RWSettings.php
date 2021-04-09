@@ -587,14 +587,14 @@ $wgShowHostnames = true;
 $wgUseSquid = true;
 # Allow XFF headers from cache servers
 $wgSquidServersNoPurge = array(
-	'45.33.90.21', # cache1
 	'45.56.102.80', # cache2
+	'198.74.57.109', # cache3
 	'127.0.0.1'
 );
 # Send PURGE requests to the cache servers on their varnish port
 $wgSquidServers = array(
-	'45.33.90.21:6081', # cache1
-	'45.56.102.80:6081' # cache2
+	'45.56.102.80:6081', # cache2
+	'198.74.57.109:6081', # cache3
 );
 $wgDisableCounters = true;#
 

@@ -93,6 +93,10 @@ git_clone_shared() {
 }
 
 install_rw_config() {
+	if [ -e /srv/rw_common/config ]; then
+		echo "/srv/rw_common/config already exists"
+		return
+	fi
 	install -o tstarling -g wikidev -d /srv/rw_common
 	git_clone_shared https://github.com/RationalWiki/rw-config.git /srv/rw_common/config
 }
@@ -156,7 +160,7 @@ END
 
 install_varnish_nginx() {
 	install_rw_config
-	apt-get install -qq varnish nginx-full certbot python-certbot-nginx
+	apt-get install -qq varnish nginx-full certbot python3-certbot-nginx
 
 	mount_bulk
 	install -o vcache -g varnish -d /bulk/varnish
@@ -189,6 +193,10 @@ install_sxbackup() {
 rw_mount() {
 	device="$1"
 	path="$2"
+	if grep -q "$path" /etc/mtab; then
+		echo "$path is already mounted"
+		return
+	fi
 	for i in $(seq 10); do
 		if [ -e "$device" ]; then
 			break
