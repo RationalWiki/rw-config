@@ -1,0 +1,222 @@
+#!/bin/bash
+
+system_set_hostname() {
+	# $1 - The hostname to define
+	HOSTNAME="$1"
+
+	if [ ! -n "$HOSTNAME" ]; then
+		echo "Hostname undefined"
+		return 1;
+	fi
+
+	echo "$HOSTNAME" > /etc/hostname
+	hostname -F /etc/hostname
+}
+
+rw_add_user() {
+	user="$1"
+	uid="$2"
+	keys="$3"
+
+	useradd -m -g wikidev -G sudo,adm -s/bin/bash -u"$uid" "$user"
+	install -o "$user" -g wikidev -m 700 -d /home/$user/.ssh
+	echo "$keys" > /home/$user/.ssh/authorized_keys
+	
+	sudo -u "$user" sh -c "cat >> /home/$user/.bashrc" <<END
+
+# Added by RationalWiki StackScript
+umask 002
+export EDITOR=vim
+END
+}
+
+install_restrictive_firewall() {
+	ufw allow 22/tcp
+	ufw allow 53/udp
+	ufw allow from 198.74.57.169 comment apache4
+	ufw allow from 50.116.9.193 comment backup1
+	ufw allow from 45.33.90.21 comment cache1
+	ufw allow from 45.56.102.80 comment cache2
+	ufw allow from 198.74.57.109 comment cache3
+	ufw allow from 45.33.72.223 comment db1
+	ufw allow from 96.126.108.130 comment misc1
+	ufw allow from 69.164.216.133 comment search1
+	ufw enable
+}
+
+install_frontend_firewall() {
+	ufw allow 22/tcp
+	ufw allow 53/udp
+	ufw allow 80/tcp
+	ufw allow 443/tcp
+	ufw allow from 198.74.57.169 comment apache4
+	ufw allow from 50.116.9.193 comment backup1
+	ufw allow from 45.33.90.21 comment cache1
+	ufw allow from 45.56.102.80 comment cache2
+	ufw allow from 198.74.57.109 comment cache3	
+	ufw allow from 45.33.72.223 comment db1
+	ufw allow from 96.126.108.130 comment misc1
+	ufw allow from 69.164.216.133 comment search1
+	ufw enable
+}
+
+install_postfix() {
+	debconf-set-selections <<END
+postfix postfix/main_mailer_type select Internet Site
+postfix postfix/mailname string rationalwiki.org
+postfix postfix/destinations string rationalwiki.org, localhost
+END
+	apt-get -qq install postfix
+}
+
+install_memcached() {
+	apt-get -qq install memcached
+	sed -i '/^-m/c\
+-m 1024
+' /etc/memcached.conf
+	systemctl restart memcached
+}
+
+install_apache_php() {
+	apt-get -qq install php7.2-bcmath php7.2-curl php7.2-gmp php7.2-intl php7.2-mbstring php7.2-mysql php7.2-readline php7.2-tidy php7.2-xml php-zip libapache2-mod-php composer imagemagick librsvg2-bin
+	a2enmod -q expires
+	a2enmod -q rewrite
+
+	install -o www-data -g www-data -d /var/log/php
+
+	ln -sf /srv/rw_common/config/php/cli/php.ini /etc/php/7.2/cli/php.ini
+	ln -sf /srv/rw_common/config/php/apache2/php.ini /etc/php/7.2/apache2/php.ini
+}
+
+git_clone_shared() {
+	sudo -H -u tstarling git clone -c core.sharedRepository=group "$1" "$2"
+}
+
+install_rw_config() {
+	install -o tstarling -g wikidev -d /srv/rw_common
+	git_clone_shared https://github.com/RationalWiki/rw-config.git /srv/rw_common/config
+}
+
+install_mw() {
+	bin_dir=/srv/rw_common/config/bin
+
+	mount_bulk
+	install_rw_config
+
+	git_clone_shared https://github.com/RationalWiki/rw-docroot.git /srv/rw_common/public_html
+	install -o www-data -g wikidev -m 775 -d /srv/rw_common/election
+	install -o www-data -g www-data -d /var/log/mw
+	install -o www-data -g www-data -d /bulk/cache
+
+	install -o tstarling -g wikidev -d /srv/rw_staging
+	git_clone_shared https://github.com/RationalWiki/rw-config.git /srv/rw_staging/config
+	git_clone_shared https://github.com/RationalWiki/rw-docroot.git /srv/rw_staging/public_html
+	sudo -H -u tstarling git -C /srv/rw_common/config remote add staging /srv/rw_staging/config
+
+	$bin_dir/install-fonts
+	sudo -H -u tstarling $bin_dir/get-source /srv/rw_common
+	sudo -H -u tstarling $bin_dir/get-source /srv/rw_staging
+
+	sudo -u tstarling ln -s /srv/rw_common/config/RWSettings.php /srv/rw_common/core/LocalSettings.php
+	sudo -u tstarling ln -s /srv/rw_staging/config/RWSettings.php /srv/rw_staging/core/LocalSettings.php
+
+	ln -s /srv/rw_common/config/apache/old-domain-redirects.conf /etc/apache2/sites-available
+	ln -s /srv/rw_common/config/apache/rationalwiki.org.conf /etc/apache2/sites-available
+	ln -s /srv/rw_staging/config/apache/staging.rationalwiki.org.conf /etc/apache2/sites-available
+
+	a2ensite old-domain-redirects
+	a2ensite rationalwiki.org
+	a2ensite staging.rationalwiki.org
+	systemctl reload apache2
+
+	cat > /etc/cron.d/mw-job-runner <<END
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+* * * * * www-data /srv/rw_common/config/bin/run-jobs
+END
+}
+
+install_elasticsearch() {
+	apt-get install -qq openjdk-8-jre-headless
+	wget -O /root/elasticsearch-1.7.6.deb https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.6.deb
+	dpkg -i /root/elasticsearch-1.7.6.deb
+}
+
+install_mariadb() {
+	mount_bulk
+	apt-get install -qq mariadb-server
+	cat > /etc/mysql/mariadb.conf.d/90-rationalwiki.cnf <<END
+[server]
+innodb_buffer_pool_size = 6G
+innodb_log_file_size = 160M
+datadir = /bulk/mysql
+bind-address = 0.0.0.0
+END
+	systemctl restart mysql
+}
+
+install_varnish_nginx() {
+	install_rw_config
+	apt-get install -qq varnish nginx-full certbot python-certbot-nginx
+
+	mount_bulk
+	install -o vcache -g varnish -d /bulk/varnish
+	ln -sf /srv/rw_common/config/varnish/default.vcl /etc/varnish/default.vcl
+	sed '/^ExecStart/c\
+ExecStart=/usr/sbin/varnishd \\\
+  -j unix,user=vcache \\\
+  -F \\\
+  -a :6081 \\\
+  -T localhost:6082 \\\
+  -f /etc/varnish/default.vcl \\\
+  -s file,/bulk/varnish/storage,47G \\\
+  -S /etc/varnish/secret
+' /lib/systemd/system/varnish.service > /etc/systemd/system/varnish.service
+	systemctl daemon-reload
+	systemctl restart varnish
+
+	ln -sf /srv/rw_common/config/nginx/ssl-proxy /etc/nginx/sites-available/
+	ln -sf /etc/nginx/sites-available/ssl-proxy /etc/nginx/sites-enabled/
+	openssl dhparam -out /etc/nginx/dhparams.pem 2048
+	systemctl stop nginx
+	# nginx cannot start successfully until the SSL certificate is installed
+}
+
+install_sxbackup() {
+	apt-get install -qq python3-pip
+	pip3 install btrfs-sxbackup
+}
+
+rw_mount() {
+	device="$1"
+	path="$2"
+	for i in $(seq 10); do
+		if [ -e "$device" ]; then
+			break
+		fi
+		sleep 1
+	done
+	if [ ! -e "$device" ]; then
+		msg="Cannot mount $path: $device does not exist"
+		wall "$msg"
+		echo "$msg"
+		exit 1
+	fi
+	echo "$device $path ext4 defaults 0 2" >> /etc/fstab
+	mkdir $path
+	mount $path
+
+}
+
+mount_varlog() {
+	systemctl stop rsyslog
+	mv /var/log /var/log.tmp
+	rw_mount /dev/sdc /var/log
+	mv /var/log.tmp/* /var/log
+	rmdir /var/log.tmp
+	systemctl start rsyslog
+}
+
+mount_bulk() {
+	rw_mount /dev/sdd /bulk
+}
+
