@@ -84,9 +84,10 @@ sub vcl_hit {
     }
 
     # Force miss if the request is a no-cache request
-    if (req.http.Cache-Control ~ "no-cache") {
-        return (miss);
-    }
+    # Doesn't work on Varnish 6.2
+    #if (req.http.Cache-Control ~ "no-cache") {
+    #    return (miss);
+    #}
 }
 
 # Called if the cache does not have a copy of the page.
