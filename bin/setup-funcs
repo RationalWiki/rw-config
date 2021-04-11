@@ -21,7 +21,7 @@ rw_add_user() {
 	useradd -m -g wikidev -G sudo,adm -s/bin/bash -u"$uid" "$user"
 	install -o "$user" -g wikidev -m 700 -d /home/$user/.ssh
 	echo "$keys" > /home/$user/.ssh/authorized_keys
-	
+
 	sudo -u "$user" sh -c "cat >> /home/$user/.bashrc" <<END
 
 # Added by RationalWiki StackScript
@@ -39,6 +39,7 @@ install_restrictive_firewall() {
 	ufw allow from 45.56.102.80 comment cache2
 	ufw allow from 198.74.57.109 comment cache3
 	ufw allow from 45.33.72.223 comment db1
+	ufw allow from 173.255.229.202 comment db2
 	ufw allow from 96.126.108.130 comment misc1
 	ufw allow from 69.164.216.133 comment search1
 	ufw enable
@@ -53,8 +54,9 @@ install_frontend_firewall() {
 	ufw allow from 50.116.9.193 comment backup1
 	ufw allow from 45.33.90.21 comment cache1
 	ufw allow from 45.56.102.80 comment cache2
-	ufw allow from 198.74.57.109 comment cache3	
+	ufw allow from 198.74.57.109 comment cache3
 	ufw allow from 45.33.72.223 comment db1
+	ufw allow from 173.255.229.202 comment db2
 	ufw allow from 96.126.108.130 comment misc1
 	ufw allow from 69.164.216.133 comment search1
 	ufw enable
