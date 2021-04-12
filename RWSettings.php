@@ -16,6 +16,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 	case 'ru_rationalwiki':
 	case 'staging_rationalwiki':
+	case 'test35_rationalwiki':
 		$host = str_replace( '_rationalwiki', '.rationalwiki.org', MW_DB );
 		break;
 	}
@@ -36,6 +37,12 @@ switch ( $host ) {
 		$wgDBname = 'staging_rationalwiki';
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'staging' );
+		break;
+
+	case 'test35.rationalwiki.org':
+		$wgDBname = 'test35_rationalwiki';
+		$wgLanguageCode = 'en';
+		$wgLocalInterwikis = array( 'test35' );
 		break;
 
 	// case qq.rationalwiki.org
@@ -132,7 +139,7 @@ $wgDBprefix         = "";
 $wgDBTableOptions   = "TYPE=InnoDB";
 
 # Shared tables
-if ( $wgDBname !== 'rationalwiki' ) {
+if ( !in_array( $wgDBname, [ 'rationalwiki', 'test35_rationalwiki' ] ) ) {
 	$wgSharedDB = 'rationalwiki';
 	$wgSharedTables[] = 'user_groups';
 	$wgSharedTables[] = 'ipblocks';
@@ -150,9 +157,7 @@ $wgUploadDirectory = "/mnt/images/{$host}";
 # max upload size = 10 mb (1024 * 1024 * 10) https://www.mediawiki.org/wiki/Manual:$wgMaxUploadSize
 $wgMaxUploadSize = 10485760;
 
-if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
-	$wgEnableUploads = true;
-} else {
+if ( $wgDBname === 'ru_rationalwiki' ) {
 	$wgEnableUploads = false;
 	$wgUploadNavigationUrl = "https://rationalwiki.org/wiki/Special:Upload";
 
@@ -164,6 +169,8 @@ if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 		'wiki' => 'rationalwiki',
 		'hasSharedCache' => true,
 	);
+} else {
+	$wgEnableUploads = true;
 }
 
 $wgUseImageMagick = true;
