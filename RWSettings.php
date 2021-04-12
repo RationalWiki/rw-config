@@ -435,9 +435,11 @@ wfLoadExtensions( array(
 	'AbuseFilter',
 	'AntiSpoof',
 	'CharInsert',
+	'CirrusSearch',
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'Echo',
 	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
@@ -445,12 +447,15 @@ wfLoadExtensions( array(
 	'ImageMap',
 	'InputBox',
 	'Interwiki',
+	'LiquidThreads',
 	'Math',
 	'ParserFunctions',
 	'PdfHandler',
 	'RationalWiki',
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
+	'VandalBrake2',
+	'Variables',
 	'WikiEditor',
 	'Wigo3',
 ) );
@@ -464,7 +469,6 @@ wfLoadSkins( array(
 ) );
 
 ### Vandal brake and vandal bin
-require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
 $wgVandalBrakeConfigAllowMove = false;
 $wgVandalBrakeConfigRemoveRights[] = 'upload';
 
@@ -515,13 +519,10 @@ $wgPFEnableStringFunctions = true;
 
 require_once("$wgExtensionDirectory/DynamicPageList/DynamicPageList.php");
 require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
-require_once("$wgExtensionDirectory/Variables/Variables.php");
 require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
 require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
-require_once("$wgExtensionDirectory/ImageMap/ImageMap.php");
-require_once("$wgExtensionDirectory/Echo/Echo.php");
 
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
@@ -535,7 +536,6 @@ $wgDjvuDump = "djvudump";
 $wgDjvuRenderer = "ddjvu";
 
 ## CirrusSearch
-require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
 $wgSearchType = 'CirrusSearch';
 
 $wgCirrusSearchClusters = [ 'default' => [ 'search1.rationalwiki.org' ] ];
@@ -559,7 +559,6 @@ $wgWikiEditorModules = array(
 $wgDefaultUserOptions['usebetatoolbar'] = 1;
 $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
 
-require_once( "$wgExtensionDirectory/LiquidThreads/LiquidThreads.php" );
 $wgLqtTalkPages = false;
 
 $wgMaxShellMemory = 0;
