@@ -132,18 +132,17 @@ $wgDBprefix         = "";
 $wgDBTableOptions   = "TYPE=InnoDB";
 
 # Shared tables
-# Disabling for 1.34 upgrade
-//if ( $wgDBname !== 'rationalwiki' ) {
-//	$wgSharedDB = 'rationalwiki';
-//	$wgSharedTables[] = 'user_groups';
-//	$wgSharedTables[] = 'ipblocks';
-//	$wgSharedTables[] = 'vandals';
-//	$wgSharedTables[] = 'updates';
-//	$wgSharedTables[] = 'user_message_state';
-//	$wgSharedTables[] = 'abuse_filter_action';
-//	$wgSharedTables[] = 'abuse_filter';
-//	$wgSharedTables[] = 'wigotext';
-//}
+if ( $wgDBname !== 'rationalwiki' ) {
+	$wgSharedDB = 'rationalwiki';
+	$wgSharedTables[] = 'user_groups';
+	$wgSharedTables[] = 'ipblocks';
+	$wgSharedTables[] = 'vandals';
+	$wgSharedTables[] = 'updates';
+	$wgSharedTables[] = 'user_message_state';
+	$wgSharedTables[] = 'abuse_filter_action';
+	$wgSharedTables[] = 'abuse_filter';
+	$wgSharedTables[] = 'wigotext';
+}
 
 # Uploads
 $wgUploadPath = '/w/images';

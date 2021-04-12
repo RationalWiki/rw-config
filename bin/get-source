@@ -19,7 +19,7 @@ if [ -z "$1" ]; then
 fi
 
 base=$(realpath "$1")
-mw_release_branch=REL1_34
+mw_release_branch=REL1_35
 
 if [ ! -e "$base" ]; then
 	mkdir -p "$base"
