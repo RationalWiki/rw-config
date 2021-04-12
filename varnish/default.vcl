@@ -9,6 +9,11 @@ backend default {
     .port = "80";
 }
 
+backend mwtest {
+	.host = "45.56.102.80";
+	.port = "80";
+}
+
 # vcl_recv is called whenever a request is received
 sub vcl_recv {
     # Get X-Forwarded-For from nginx
@@ -17,7 +22,11 @@ sub vcl_recv {
     } else {
         set req.http.X-Forwarded-For = client.ip;
     }
-    set req.backend_hint= default;
+    if (req.http.host == "test35.rationalwiki.org") {
+        set req.backend_hint = mwtest;
+    } else {
+        set req.backend_hint = default;
+    }
 
     # This uses the ACL action called "purge". Basically if a request to
     # PURGE the cache comes from anywhere other than the purge list, ignore it.
