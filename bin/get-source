@@ -78,6 +78,7 @@ gerrit_extensions="
 	SyntaxHighlight_GeSHi
 	TitleBlacklist
 	Variables
+	Wigo3
 	WikiEditor
 	"
 
@@ -90,7 +91,6 @@ rw_extensions="
 	RandomSelection
 	RationalWiki
 	VandalBrake2
-	Wigo3
 	"
 
 skins="
