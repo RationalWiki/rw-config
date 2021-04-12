@@ -83,7 +83,6 @@ gerrit_extensions="
 	"
 
 rw_extensions="
-	DynamicFunctions
 	RWEditcount
 	RWElection
 	ImageFilter
