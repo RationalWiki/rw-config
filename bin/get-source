@@ -16,6 +16,11 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+if [ "$USER" == root ]; then
+	echo "This script should not be run as root"
+	exit 1
+fi
+
 base=$(realpath "$1")
 mw_release_branch=REL1_27
 

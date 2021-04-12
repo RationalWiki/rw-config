@@ -80,7 +80,7 @@ install_memcached() {
 }
 
 install_apache_php() {
-	apt-get -qq install php7.4-bcmath php7.4-curl php7.4-gmp php7.4-intl php7.4-mbstring php7.4-mysql php7.4-readline php7.4-tidy php7.4-xml php-zip libapache2-mod-php composer imagemagick librsvg2-bin
+	apt-get -qq install php7.4-bcmath php7.4-curl php7.4-gmp php7.4-intl php7.4-mbstring php7.4-mysql php7.4-readline php7.4-tidy php7.4-xml php-zip libapache2-mod-php composer imagemagick librsvg2-bin php-apcu
 	a2enmod -q expires
 	a2enmod -q rewrite
 

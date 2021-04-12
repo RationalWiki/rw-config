@@ -448,6 +448,7 @@ wfLoadExtensions( array(
 	'Math',
 	'ParserFunctions',
 	'PdfHandler',
+	'RandomSelection',
 	'RationalWiki',
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
@@ -519,7 +520,6 @@ $wgPFEnableStringFunctions = true;
 require_once("$wgExtensionDirectory/DynamicPageList/DynamicPageList.php");
 require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
 require_once("$wgExtensionDirectory/Variables/Variables.php");
-require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
 require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
