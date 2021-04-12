@@ -522,7 +522,9 @@ require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
 require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
-require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
+
+// Broken on 1.34 and unmaintained
+// require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
 
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
