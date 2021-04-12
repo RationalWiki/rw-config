@@ -29,18 +29,21 @@ switch ( $host ) {
 	case 'rationalwiki.org':
 		$wgSitename = "RationalWiki";
 		$wgDBname = 'rationalwiki';
+		$wgDBuser = "rw_web";
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'RationalWiki', 'en' );
 		break;
 
 	case 'staging.rationalwiki.org':
 		$wgDBname = 'staging_rationalwiki';
+		$wgDBuser = "rw_web";
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'staging' );
 		break;
 
 	case 'test35.rationalwiki.org':
 		$wgDBname = 'test35_rationalwiki';
+		$wgDBuser = "mwtest";
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'test35' );
 		break;
@@ -50,6 +53,7 @@ switch ( $host ) {
 		$wgSitename = "РациоВики";
 		$wgLanguageCode = str_replace( '.rationalwiki.org', '', $host );
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
+		$wgDBuser = "rw_web";
 		$wgLocalInterwikis = array( $wgLanguageCode );
 		break;
 
@@ -132,7 +136,6 @@ $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
 $wgDBserver         = "db1.rationalwiki.org";
-$wgDBuser           = "rw_web";
 $wgDBprefix         = "";
 
 # MySQL table options to use during installation or update
