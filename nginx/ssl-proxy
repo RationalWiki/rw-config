@@ -1,9 +1,9 @@
 server {
     listen [::]:80 ipv6only=on;
     server_name rationalwiki.org www.rationalwiki.org rationalwiki.com www.rationalwiki.com rationalwiki.net www.rationalwiki.net www.evolutionwiki.com evolutionwiki.org www.evolutionwiki.org evolutionwiki.net www.evolutionwiki.net evowiki.org www.evowiki.org rationalbeta.com www.rationalbeta.com;
-    location /.well-known/acme-challenge {            
-      alias /var/www/html/.well-known/acme-challenge;            
-    }  
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
     location / {
       return 301 https://$server_name$request_uri;
     }
@@ -12,9 +12,9 @@ server {
 server {
     listen 80;
     server_name rationalwiki.org www.rationalwiki.org rationalwiki.com www.rationalwiki.com rationalwiki.net www.rationalwiki.net www.evolutionwiki.com evolutionwiki.org www.evolutionwiki.org evolutionwiki.net www.evolutionwiki.net evowiki.org www.evowiki.org rationalbeta.com www.rationalbeta.com ;
-    location /.well-known/acme-challenge {            
-      alias /var/www/html/.well-known/acme-challenge;            
-    }  
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
     location / {
       return 301 https://$server_name$request_uri;
     }
@@ -23,9 +23,9 @@ server {
 server {
     listen 80;
     server_name ru.rationalwiki.org www.ru.rationalwiki.org ru.rationalwiki.com www.ru.rationalwiki.com ru.rationalwiki.net www.ru.rationalwiki.net ;
-    location /.well-known/acme-challenge {            
-      alias /var/www/html/.well-known/acme-challenge;            
-    }  
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
     location / {
       return 301 https://$server_name$request_uri;
     }
@@ -45,6 +45,28 @@ server {
 server {
     listen 80;
     server_name staging.rationalwiki.org;
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
+    location / {
+      return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen [::]:80;
+    server_name test35.rationalwiki.org;
+    location /.well-known/acme-challenge {
+      alias /var/www/html/.well-known/acme-challenge;
+    }
+    location / {
+      return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    server_name test35.rationalwiki.org;
     location /.well-known/acme-challenge {
       alias /var/www/html/.well-known/acme-challenge;
     }
