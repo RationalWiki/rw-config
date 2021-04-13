@@ -139,7 +139,7 @@ $wgDBserver         = "db1.rationalwiki.org";
 $wgDBprefix         = "";
 
 # MySQL table options to use during installation or update
-$wgDBTableOptions   = "TYPE=InnoDB";
+$wgDBTableOptions   = "TYPE=InnoDB, DEFAULT CHARSET=binary";
 
 # Shared tables
 if ( !in_array( $wgDBname, [ 'rationalwiki', 'test35_rationalwiki' ] ) ) {
