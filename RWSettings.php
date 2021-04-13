@@ -35,6 +35,7 @@ switch ( $host ) {
 		break;
 
 	case 'staging.rationalwiki.org':
+		$wgSitename = "RationalWiki staging test";
 		$wgDBname = 'staging_rationalwiki';
 		$wgDBuser = "rw_web";
 		$wgLanguageCode = 'en';
@@ -42,6 +43,7 @@ switch ( $host ) {
 		break;
 
 	case 'test35.rationalwiki.org':
+		$wgSitename = "RationalWiki MediaWiki 1.35 test";
 		$wgDBname = 'test35_rationalwiki';
 		$wgDBuser = "mwtest";
 		$wgLanguageCode = 'en';
