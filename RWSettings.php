@@ -628,3 +628,6 @@ foreach ( rwPrivateSettings() as $name => $value ) {
 }
 
 $wgPasswordAttemptThrottle = [ [ 'count' => 2, 'seconds' => 60 ], [ 'count' => 5, 'seconds' => 300 ], [ 'count' => 50, 'seconds' => 60*60*48 ], ];
+
+# Avoid Content-Length mismatch when sending pretty fatal errors
+$wgDisableOutputCompression = true;
