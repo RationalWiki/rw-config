@@ -83,7 +83,6 @@ gerrit_extensions="
 	"
 
 rw_extensions="
-	DynamicPageList3
 	ImageFilter
 	iw-nofollow
 	RandomSelection
@@ -103,6 +102,7 @@ skins="
 
 make-module "$base" "$gerrit_base/mediawiki/core.git" core
 
+make-extension "$github_base/RationalWiki/DynamicPageList3.git" DynamicPageList3
 make-extension "$gitlab_base/hydrawiki/extensions/EmbedVideo.git" EmbedVideo
 make-extension "$github_base/JeroenDeDauw/SubPageList.git" SubPageList
 
