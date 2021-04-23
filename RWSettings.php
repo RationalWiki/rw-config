@@ -611,9 +611,6 @@ $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
 
-# Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
-ExtDynamicPageList::$respectParserCache = true;
-
 #$wgElectionName = "Mods2020";
 #$wgElectionCandidates = array("Ace McWicked", "Ariel31459", "Bongolian", "CircularReasoning", "Hastur", "RWRW", "Rockford the Roe", "Sirius", "Spud", "Summa Atheologica");
 #$wgElectionStoreDir = "$IP/../election";
