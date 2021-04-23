@@ -24,6 +24,8 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		$host = 'rationalwiki.org';
 }
 
+$wgLogo = "/w/images/6/6e/Rw_logo.png";
+
 switch ( $host ) {
 	case 'rationalwiki.org':
 		$wgSitename = "RationalWiki";
@@ -44,6 +46,7 @@ switch ( $host ) {
 		$wgLanguageCode = str_replace( '.rationalwiki.org', '', $host );
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
 		$wgLocalInterwikis = array( $wgLanguageCode );
+		$wgLogo = 'https://rationalwiki.org/w/images/1/16/RussianWiki.png';
 		break;
 
 	default:
@@ -58,7 +61,6 @@ $wgSecureLogin = true;
 $wgCookieDomain = '.rationalwiki.org';
 
 $wgFavicon ="/favicon.ico";
-$wgLogo = "/w/images/6/6e/Rw_logo.png";
 # and so this is Saturnalia, and what have you done?
 # To set the Christmas hat logo, just change File:Rw_logo.png
 
