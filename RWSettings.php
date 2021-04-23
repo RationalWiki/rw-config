@@ -451,6 +451,7 @@ wfLoadExtensions( array(
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'DynamicPageList3',
 	'Echo',
 	'Elastica',
 	'EmbedVideo',
@@ -530,7 +531,6 @@ require_once("$wgExtensionDirectory/RationalWiki/bible.php");
 # ParserFunctions
 $wgPFEnableStringFunctions = true;
 
-require_once("$wgExtensionDirectory/DynamicPageList/DynamicPageList.php");
 require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");

@@ -83,12 +83,13 @@ gerrit_extensions="
 	"
 
 rw_extensions="
-	RWEditcount
-	RWElection
+	DynamicPageList3
 	ImageFilter
 	iw-nofollow
 	RandomSelection
 	RationalWiki
+	RWEditcount
+	RWElection
 	VandalBrake2
 	"
 
