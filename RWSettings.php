@@ -580,6 +580,7 @@ $wgThumbnailEpoch = '20101114210500';
 $wgLocaltimezone = "UTC";
 
 $logGroups = array(
+	'authentication',
 	'CirrusSearch',
 	'exception',
 	'lqt',
