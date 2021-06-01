@@ -468,6 +468,7 @@ wfLoadExtensions( array(
 	'RationalWiki',
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
+	'TimedMediaHandler',
 	'VandalBrake2',
 	'Variables',
 	'WikiEditor',
@@ -542,8 +543,13 @@ require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
 $wgGroupPermissions['tech']['interwiki'] = true;
 
 ## Ogg support
-require( "$wgExtensionDirectory/OggHandler/OggHandler.php" );
 $wgFFmpegLocation = '/usr/bin/ffmpeg';
+
+# Use TMH for most audio/video types
+$wgEmbedVideoEnableAudioHandler = false;
+$wgEmbedVideoEnableVideoHandler = false;
+$wgMediaHandlers['video/quicktime']		= 'EmbedVideo\VideoHandler';
+$wgMediaHandlers['video/x-matroska']	= 'EmbedVideo\VideoHandler';
 
 ## PDF and DjVu support
 $wgDjvuDump = "djvudump";

@@ -71,11 +71,11 @@ gerrit_extensions="
 	Interwiki
 	LiquidThreads
 	Math
-	OggHandler
 	ParserFunctions
 	PdfHandler
 	Renameuser
 	SyntaxHighlight_GeSHi
+	TimedMediaHandler
 	TitleBlacklist
 	Variables
 	Wigo3
