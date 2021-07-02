@@ -100,6 +100,8 @@ $wgAntiSpoofAccounts = false;
 $wgAbuseFilterProfile = true;
 # AbuseFilter block settings (note: no filters have block enabled)
 $wgAbuseFilterBlockDuration = '314159 seconds';
+# less prone to detect apparent false positive
+$wgAbuseFilterEmergencyDisableThreshold = [ 'default' => 0.25 ];
 ## AbuseFilter user rights
 # Everyone can view (non-hidden) AbuseFilters and AbuseFilter logs
 $wgGroupPermissions['*']['abusefilter-view'] = true;
