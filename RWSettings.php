@@ -359,6 +359,13 @@ $wgGroupPermissions['sysop']['blockemail'] = false;
 $wgGroupPermissions['sysop']['mergehistory'] = false;
 $wgGroupPermissions['moderator']['blockemail'] = true;
 
+# awful hack to block anon editing on ru, but not on en
+switch ( $host ) {
+        case 'ru.rationalwiki.org':
+                $wgGroupPermissions['*']['edit'] = false;
+                break;
+        }
+
 ## give the above to techs
 $wgGroupPermissions['staff']['editinterface'] = true;
 $wgGroupPermissions['tech']['editinterface'] = true;
