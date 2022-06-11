@@ -25,6 +25,8 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		$host = 'rationalwiki.org';
 }
 
+$wgLogo = "/w/images/6/6e/Rw_logo.png";
+
 switch ( $host ) {
 	case 'rationalwiki.org':
 		$wgSitename = "RationalWiki";
@@ -57,6 +59,7 @@ switch ( $host ) {
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
 		$wgDBuser = "rw_web";
 		$wgLocalInterwikis = array( $wgLanguageCode );
+		$wgLogo = 'https://rationalwiki.org/w/images/1/16/RussianWiki.png';
 		break;
 
 	default:
@@ -71,7 +74,6 @@ $wgSecureLogin = true;
 $wgCookieDomain = '.rationalwiki.org';
 
 $wgFavicon ="/favicon.ico";
-$wgLogo = "/w/images/6/6e/Rw_logo.png";
 # and so this is Saturnalia, and what have you done?
 # To set the Christmas hat logo, just change File:Rw_logo.png
 
@@ -111,6 +113,8 @@ $wgAntiSpoofAccounts = false;
 $wgAbuseFilterProfile = true;
 # AbuseFilter block settings (note: no filters have block enabled)
 $wgAbuseFilterBlockDuration = '314159 seconds';
+# less prone to detect apparent false positive
+$wgAbuseFilterEmergencyDisableThreshold = [ 'default' => 0.25 ];
 ## AbuseFilter user rights
 # Everyone can view (non-hidden) AbuseFilters and AbuseFilter logs
 $wgGroupPermissions['*']['abusefilter-view'] = true;
@@ -367,6 +371,13 @@ $wgGroupPermissions['sysop']['blockemail'] = false;
 $wgGroupPermissions['sysop']['mergehistory'] = false;
 $wgGroupPermissions['moderator']['blockemail'] = true;
 
+# awful hack to block anon editing on ru, but not on en
+switch ( $host ) {
+        case 'ru.rationalwiki.org':
+                $wgGroupPermissions['*']['edit'] = false;
+                break;
+        }
+
 ## give the above to techs
 $wgGroupPermissions['staff']['editinterface'] = true;
 $wgGroupPermissions['tech']['editinterface'] = true;
@@ -618,9 +629,9 @@ $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
 
-#$wgElectionName = "Mods2020";
-#$wgElectionCandidates = array("Ace McWicked", "Ariel31459", "Bongolian", "CircularReasoning", "Hastur", "RWRW", "Rockford the Roe", "Sirius", "Spud", "Summa Atheologica");
-#$wgElectionStoreDir = "$IP/../election";
+# $wgElectionName = "ModsNov2021";
+# $wgElectionCandidates = array("Ariel31459", "Bongolian", "CorruptUser", "Flandres", "LeftyGreenMario", "Rockford", "Spud", "Summa Atheologica", "Techpriest");
+# $wgElectionStoreDir = "$IP/../election";
 
 # Less annoying watchlist notifications
 $wgDefaultUserOptions['watchcreations'] = 1;
