@@ -120,6 +120,13 @@ $wgAbuseFilterEmergencyDisableThreshold = [ 'default' => 0.25 ];
 $wgGroupPermissions['*']['abusefilter-view'] = true;
 $wgGroupPermissions['*']['abusefilter-log'] = true;
 $wgGroupPermissions['*']['abusefilter-log-detail'] = true;
+# Remove default AbuseFilter permissions from sysops
+$wgGroupPermissions['sysop']['abusefilter-log-detail'] = false;
+$wgGroupPermissions['sysop']['abusefilter-view-private'] = false;
+$wgGroupPermissions['sysop']['abusefilter-log-private'] = false;
+$wgGroupPermissions['sysop']['abusefilter-modify'] = false;
+$wgGroupPermissions['sysop']['abusefilter-modify-restricted'] = false;
+$wgGroupPermissions['sysop']['abusefilter-revert'] = false;
 # Techs can edit AbuseFilters
 $wgGroupPermissions['tech']['abusefilter-modify'] = true;
 $wgGroupPermissions['tech']['abusefilter-modify-restricted'] = true;
