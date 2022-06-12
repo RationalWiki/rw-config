@@ -141,7 +141,7 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
-$wgDBserver         = "db1.rationalwiki.org";
+$wgDBserver         = "db2.rationalwiki.org";
 $wgDBprefix         = "";
 
 # MySQL table options to use during installation or update

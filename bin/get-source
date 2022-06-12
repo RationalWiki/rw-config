@@ -48,7 +48,7 @@ make-module() {
 	# Run composer if there is a composer.json
 	cd "$3"
 	if [ -e composer.json ]; then
-		composer update --no-dev || true
+		composer update --no-dev --ignore-platform-reqs || true
 	fi
 }
 
