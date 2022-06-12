@@ -16,6 +16,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 	case 'ru_rationalwiki':
 	case 'staging_rationalwiki':
+	case 'test35_rationalwiki':
 		$host = str_replace( '_rationalwiki', '.rationalwiki.org', MW_DB );
 		break;
 	}
@@ -30,14 +31,25 @@ switch ( $host ) {
 	case 'rationalwiki.org':
 		$wgSitename = "RationalWiki";
 		$wgDBname = 'rationalwiki';
+		$wgDBuser = "rw_web";
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'RationalWiki', 'en' );
 		break;
 
 	case 'staging.rationalwiki.org':
+		$wgSitename = "RationalWiki staging test";
 		$wgDBname = 'staging_rationalwiki';
+		$wgDBuser = "rw_web";
 		$wgLanguageCode = 'en';
 		$wgLocalInterwikis = array( 'staging' );
+		break;
+
+	case 'test35.rationalwiki.org':
+		$wgSitename = "RationalWiki MediaWiki 1.35 test";
+		$wgDBname = 'test35_rationalwiki';
+		$wgDBuser = "mwtest";
+		$wgLanguageCode = 'en';
+		$wgLocalInterwikis = array( 'test35' );
 		break;
 
 	// case qq.rationalwiki.org
@@ -45,6 +57,7 @@ switch ( $host ) {
 		$wgSitename = "РациоВики";
 		$wgLanguageCode = str_replace( '.rationalwiki.org', '', $host );
 		$wgDBname = "{$wgLanguageCode}_rationalwiki";
+		$wgDBuser = "rw_web";
 		$wgLocalInterwikis = array( $wgLanguageCode );
 		$wgLogo = 'https://rationalwiki.org/w/images/1/16/RussianWiki.png';
 		break;
@@ -128,15 +141,14 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 $wgDBtype           = "mysql";
-$wgDBserver         = "db1.rationalwiki.org";
-$wgDBuser           = "rw_web";
+$wgDBserver         = "db2.rationalwiki.org";
 $wgDBprefix         = "";
 
 # MySQL table options to use during installation or update
-$wgDBTableOptions   = "TYPE=InnoDB";
+$wgDBTableOptions   = "TYPE=InnoDB, DEFAULT CHARSET=binary";
 
 # Shared tables
-if ( $wgDBname !== 'rationalwiki' ) {
+if ( !in_array( $wgDBname, [ 'rationalwiki', 'test35_rationalwiki' ] ) ) {
 	$wgSharedDB = 'rationalwiki';
 	$wgSharedTables[] = 'user_groups';
 	$wgSharedTables[] = 'ipblocks';
@@ -154,9 +166,7 @@ $wgUploadDirectory = "/mnt/images/{$host}";
 # max upload size = 10 mb (1024 * 1024 * 10) https://www.mediawiki.org/wiki/Manual:$wgMaxUploadSize
 $wgMaxUploadSize = 10485760;
 
-if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
-	$wgEnableUploads = true;
-} else {
+if ( $wgDBname === 'ru_rationalwiki' ) {
 	$wgEnableUploads = false;
 	$wgUploadNavigationUrl = "https://rationalwiki.org/wiki/Special:Upload";
 
@@ -168,6 +178,8 @@ if ( $wgDBname === 'rationalwiki' || $wgDBname === 'staging_rationalwiki' ) {
 		'wiki' => 'rationalwiki',
 		'hasSharedCache' => true,
 	);
+} else {
+	$wgEnableUploads = true;
 }
 
 $wgUseImageMagick = true;
@@ -446,9 +458,12 @@ wfLoadExtensions( array(
 	'AbuseFilter',
 	'AntiSpoof',
 	'CharInsert',
+	'CirrusSearch',
 	'Cite',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'DynamicPageList3',
+	'Echo',
 	'Elastica',
 	'EmbedVideo',
 	'Gadgets',
@@ -456,13 +471,19 @@ wfLoadExtensions( array(
 	'ImageMap',
 	'InputBox',
 	'Interwiki',
+	'LiquidThreads',
 	'Math',
 	'ParserFunctions',
 	'PdfHandler',
+	'RandomSelection',
 	'RationalWiki',
 	'Renameuser',
 	'SyntaxHighlight_GeSHi',
+	'TimedMediaHandler',
+	'VandalBrake2',
+	'Variables',
 	'WikiEditor',
+	'Wigo3',
 ) );
 
 wfLoadSkins( array(
@@ -474,7 +495,6 @@ wfLoadSkins( array(
 ) );
 
 ### Vandal brake and vandal bin
-require_once("$wgExtensionDirectory/VandalBrake2/VandalBrake2.php");
 $wgVandalBrakeConfigAllowMove = false;
 $wgVandalBrakeConfigRemoveRights[] = 'upload';
 
@@ -500,15 +520,11 @@ $wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
 ## Paypal buttons
 require_once("$wgExtensionDirectory/RationalWiki/paypal.php");
 
-## Wigo and other polls
-
-require_once("$wgExtensionDirectory/Wigo3/wigo3.php");
+## Wigo
 $wgWigo3ConfigStoreIPs = true;
-require_once("$wgExtensionDirectory/Wigo3/slider.php");
-require_once("$wgExtensionDirectory/Wigo3/checkbox.php");
-require_once("$wgExtensionDirectory/Wigo3/multi.php");
-require_once("$wgExtensionDirectory/bestof/bestof.php");
-require_once( "$wgExtensionDirectory/AutoWIGO2/AutoWIGO2.php" );
+$wgWigo3ReplaceNextpoll = true;
+
+## Board elections
 require_once( "$wgExtensionDirectory/RWElection/RWElection.php" );
 
 ## Put nofollow even on interwiki links, because we don't want to increase CP's page rankings
@@ -527,29 +543,30 @@ require_once("$wgExtensionDirectory/RationalWiki/bible.php");
 # ParserFunctions
 $wgPFEnableStringFunctions = true;
 
-require_once("$wgExtensionDirectory/DynamicPageList/DynamicPageList.php");
 require_once("$wgExtensionDirectory/SubPageList/SubPageList.php");
-require_once("$wgExtensionDirectory/Variables/Variables.php");
-require_once("$wgExtensionDirectory/RandomSelection/RandomSelection.php");
 ## expand parserfunction, subst:expand fully expands templates
 require_once("$wgExtensionDirectory/RationalWiki/Expand.php");
-require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
-require_once("$wgExtensionDirectory/ImageMap/ImageMap.php");
-require_once("$wgExtensionDirectory/Echo/Echo.php");
+
+// Broken on 1.34 and unmaintained
+// require_once("$wgExtensionDirectory/DynamicFunctions/DynamicFunctions.php");
 
 # Interwiki
 $wgGroupPermissions['tech']['interwiki'] = true;
 
 ## Ogg support
-require( "$wgExtensionDirectory/OggHandler/OggHandler.php" );
 $wgFFmpegLocation = '/usr/bin/ffmpeg';
+
+# Use TMH for most audio/video types
+$wgEmbedVideoEnableAudioHandler = false;
+$wgEmbedVideoEnableVideoHandler = false;
+$wgMediaHandlers['video/quicktime']		= 'EmbedVideo\VideoHandler';
+$wgMediaHandlers['video/x-matroska']	= 'EmbedVideo\VideoHandler';
 
 ## PDF and DjVu support
 $wgDjvuDump = "djvudump";
 $wgDjvuRenderer = "ddjvu";
 
 ## CirrusSearch
-require_once( "$wgExtensionDirectory/CirrusSearch/CirrusSearch.php" );
 $wgSearchType = 'CirrusSearch';
 
 $wgCirrusSearchClusters = [ 'default' => [ 'search1.rationalwiki.org' ] ];
@@ -573,7 +590,6 @@ $wgWikiEditorModules = array(
 $wgDefaultUserOptions['usebetatoolbar'] = 1;
 $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
 
-require_once( "$wgExtensionDirectory/LiquidThreads/LiquidThreads.php" );
 $wgLqtTalkPages = false;
 
 $wgMaxShellMemory = 0;
@@ -581,6 +597,7 @@ $wgThumbnailEpoch = '20101114210500';
 $wgLocaltimezone = "UTC";
 
 $logGroups = array(
+	'authentication',
 	'CirrusSearch',
 	'exception',
 	'lqt',
@@ -598,22 +615,19 @@ $wgShowExceptionDetails = true;
 $wgShowHostnames = true;
 $wgUseSquid = true;
 # Allow XFF headers from cache servers
-$wgSquidServersNoPurge = array(
+$wgCdnServersNoPurge = array(
 	'45.56.102.80', # cache2
 	'198.74.57.109', # cache3
 	'127.0.0.1'
 );
 # Send PURGE requests to the cache servers on their varnish port
-$wgSquidServers = array(
+$wgCdnServers = array(
 	'45.56.102.80:6081', # cache2
 	'198.74.57.109:6081', # cache3
 );
 $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
-
-# Enable caching of DynamicPageList, otherwise the Varnish cache is suppressed for virtually every main namespace page
-ExtDynamicPageList::$respectParserCache = true;
 
 # $wgElectionName = "ModsNov2021";
 # $wgElectionCandidates = array("Ariel31459", "Bongolian", "CorruptUser", "Flandres", "LeftyGreenMario", "Rockford", "Spud", "Summa Atheologica", "Techpriest");
@@ -629,3 +643,6 @@ foreach ( rwPrivateSettings() as $name => $value ) {
 }
 
 $wgPasswordAttemptThrottle = [ [ 'count' => 2, 'seconds' => 60 ], [ 'count' => 5, 'seconds' => 300 ], [ 'count' => 50, 'seconds' => 60*60*48 ], ];
+
+# Avoid Content-Length mismatch when sending pretty fatal errors
+$wgDisableOutputCompression = true;

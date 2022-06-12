@@ -6,9 +6,11 @@ if [ "$1" == "--ssh" ]; then
 	shift
 	github_base=ssh://git@github.com
 	gerrit_base=ssh://gerrit.wikimedia.org:29418
+	gitlab_base=git@gitlab.com:
 else
 	github_base=https://github.com
 	gerrit_base=https://gerrit.wikimedia.org/r/p
+	gitlab_base=https://gitlab.com
 fi
 
 if [ -z "$1" ]; then
@@ -22,7 +24,7 @@ if [ "$USER" == root ]; then
 fi
 
 base=$(realpath "$1")
-mw_release_branch=REL1_27
+mw_release_branch=REL1_35
 
 if [ ! -e "$base" ]; then
 	mkdir -p "$base"
@@ -46,7 +48,7 @@ make-module() {
 	# Run composer if there is a composer.json
 	cd "$3"
 	if [ -e composer.json ]; then
-		composer update || true
+		composer update --no-dev --ignore-platform-reqs || true
 	fi
 }
 
@@ -74,28 +76,25 @@ gerrit_extensions="
 	Interwiki
 	LiquidThreads
 	Math
-	OggHandler
 	ParserFunctions
 	PdfHandler
 	Renameuser
 	SyntaxHighlight_GeSHi
+	TimedMediaHandler
 	TitleBlacklist
 	Variables
+	Wigo3
 	WikiEditor
 	"
 
 rw_extensions="
-	AutoWIGO2
-	bestof
-	DynamicFunctions
-	RWEditcount
-	RWElection
 	ImageFilter
 	iw-nofollow
 	RandomSelection
 	RationalWiki
+	RWEditcount
+	RWElection
 	VandalBrake2
-	Wigo3
 	"
 
 skins="
@@ -108,7 +107,8 @@ skins="
 
 make-module "$base" "$gerrit_base/mediawiki/core.git" core
 
-make-extension "$github_base/HydraWiki/mediawiki-embedvideo.git" EmbedVideo
+make-extension "$github_base/RationalWiki/DynamicPageList3.git" DynamicPageList3
+make-extension "$gitlab_base/hydrawiki/extensions/EmbedVideo.git" EmbedVideo
 make-extension "$github_base/JeroenDeDauw/SubPageList.git" SubPageList
 
 for ext in $gerrit_extensions; do
