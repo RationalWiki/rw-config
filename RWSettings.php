@@ -578,9 +578,6 @@ $wgSearchType = 'CirrusSearch';
 
 $wgCirrusSearchClusters = [ 'default' => [ 'search1.rationalwiki.org' ] ];
 
-## Seems broken -- job queue in tight loop in curl_multi, maybe needs curl update
-$wgDisableSearchUpdate = true;
-
 ## extension to hide the page title
 require_once("$wgExtensionDirectory/RationalWiki/notitle.php");
 ## extension to change the page title style
