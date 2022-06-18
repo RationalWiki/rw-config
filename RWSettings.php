@@ -155,7 +155,7 @@ $wgDBprefix         = "";
 $wgDBTableOptions   = "TYPE=InnoDB, DEFAULT CHARSET=binary";
 
 # Shared tables
-if ( $wgDBname === 'ru_rationalwiki' ) ) {
+if ( $wgDBname === 'ru_rationalwiki' ) {
 	$wgSharedDB = 'rationalwiki';
 	$wgSharedTables[] = 'user_groups';
 	$wgSharedTables[] = 'ipblocks';
