@@ -5,7 +5,7 @@ vcl 4.0;
 
 # set default backend if no server cluster specified
 backend default {
-    .host = "198.74.57.169";
+    .host = "45.33.64.59";
     .port = "80";
 }
 
