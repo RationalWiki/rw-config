@@ -85,8 +85,8 @@ server {
 
 server {
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/rationalwiki.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/rationalwiki.org/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/rationalwiki.org-0001/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/rationalwiki.org-0001/privkey.pem;
 
 #    listen 443 ssl http2;
     listen [::]:443 ssl http2 ipv6only=off;
