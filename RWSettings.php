@@ -464,11 +464,14 @@ $wgStyleDirectory = "$rwSourceBase/skins";
 wfLoadExtensions( array(
 	'AbuseFilter',
 	'AntiSpoof',
+	'CategoryTree',
 	'CharInsert',
 	'CirrusSearch',
 	'Cite',
+	'CodeEditor',
 	'ConfirmEdit',
 	'ConfirmEdit/ReCaptchaNoCaptcha',
+	'Description2',
 	'DynamicPageList3',
 	'Echo',
 	'Elastica',
@@ -480,12 +483,18 @@ wfLoadExtensions( array(
 	'Interwiki',
 	'LiquidThreads',
 	'Math',
+	'MultimediaViewer',
+	'OATHAuth',
+	'OpenGraphMeta',
 	'ParserFunctions',
 	'PdfHandler',
 	'RandomSelection',
 	'RationalWiki',
 	'Renameuser',
+	'Scribunto',
 	'SyntaxHighlight_GeSHi',
+	'TemplateStyles',
+	'Thanks',
 	'TimedMediaHandler',
 	'VandalBrake2',
 	'Variables',
@@ -495,10 +504,12 @@ wfLoadExtensions( array(
 
 wfLoadSkins( array(
 	'CologneBlue',
+	'MinervaNeue',
 	'Modern',
 	'MonoBook',
 	'Nostalgia',
-	'Vector'
+	'Vector',
+	'Timeless'
 ) );
 
 ### Vandal brake and vandal bin
