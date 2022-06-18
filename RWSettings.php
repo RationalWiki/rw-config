@@ -606,6 +606,10 @@ $wgLocaltimezone = "UTC";
 $logGroups = array(
 	'authentication',
 	'CirrusSearch',
+	'CirrusSearchChangeFailed',
+	'cirrussearch-request',
+	'CirrusSearchRequests',
+	'Elastica',
 	'exception',
 	'lqt',
 	'slow-parse',

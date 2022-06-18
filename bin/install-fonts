@@ -47,12 +47,12 @@ fonts-taml-tscu
 fonts-telu
 fonts-thai-tlwg
 fonts-tibetan-machine
+fonts-ubuntu
 fonts-unfonts-core
 fonts-unfonts-extra
 fonts-vlgothic
+fonts-wqy-zenhei
 texlive-fonts-recommended
-ttf-ubuntu-font-family
-ttf-wqy-zenhei
 xfonts-100dpi
 xfonts-75dpi
 xfonts-base
