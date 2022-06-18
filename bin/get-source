@@ -9,7 +9,7 @@ if [ "$1" == "--ssh" ]; then
 	gitlab_base=git@gitlab.com:
 else
 	github_base=https://github.com
-	gerrit_base=https://gerrit.wikimedia.org/r/p
+	gerrit_base=https://gerrit.wikimedia.org/r
 	gitlab_base=https://gitlab.com
 fi
 
@@ -63,10 +63,13 @@ make-skin() {
 gerrit_extensions="
 	AbuseFilter
 	AntiSpoof
+	CategoryTree
 	CharInsert
 	CirrusSearch
 	Cite
+	CodeEditor
 	ConfirmEdit
+	Description2
 	DynamicPageList
 	Echo
 	Elastica
@@ -76,10 +79,17 @@ gerrit_extensions="
 	Interwiki
 	LiquidThreads
 	Math
+	MobileFrontend
+	MultimediaViewer
+	OATHAuth
+	OpenGraphMeta
 	ParserFunctions
 	PdfHandler
 	Renameuser
+	Scribunto
 	SyntaxHighlight_GeSHi
+	TemplateStyles
+	Thanks
 	TimedMediaHandler
 	TitleBlacklist
 	Variables
@@ -99,9 +109,11 @@ rw_extensions="
 
 skins="
 	CologneBlue
+	MinervaNeue
 	Modern
 	MonoBook
 	Nostalgia
+	Timeless
 	Vector
 	"
 
