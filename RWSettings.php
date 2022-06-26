@@ -597,7 +597,7 @@ require_once("$wgExtensionDirectory/RationalWiki/styletitle.php");
 $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
 
-# WikiEditor (Toolbar, Toc, Preview, Highlight)
+## WikiEditor (Toolbar, Toc, Preview, Highlight)
 $wgWikiEditorModules = array(
         'highlight' => array( 'global' => false, 'user' => false ),
         'preview' => array( 'global' => false, 'user' => false ),
@@ -609,6 +609,12 @@ $wgDefaultUserOptions['usebetatoolbar'] = 1;
 $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
 
 $wgLqtTalkPages = false;
+
+## DynamicPageList
+
+$wgDplSettings['maxCategoryCount'] = 8; // For [[RationalWiki:Contents]]
+
+## Other settings
 
 $wgMaxShellMemory = 0;
 $wgThumbnailEpoch = '20101114210500';
