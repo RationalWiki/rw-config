@@ -629,7 +629,7 @@ $logGroups = array(
 	'Elastica',
 	'exception',
 	'FSFileBackend',
-	'Math',
+	'http',
 	'lqt',
 	'slow-parse',
 );
