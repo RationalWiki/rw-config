@@ -657,9 +657,9 @@ $wgDisableCounters = true;#
 
 $wgShellLocale = "en_US.utf8";
 
-# $wgElectionName = "ModsNov2021";
-# $wgElectionCandidates = array("Ariel31459", "Bongolian", "CorruptUser", "Flandres", "LeftyGreenMario", "Rockford", "Spud", "Summa Atheologica", "Techpriest");
-# $wgElectionStoreDir = "$IP/../election";
+#$wgElectionName = "ModsNov2022b";
+#$wgElectionCandidates = array("Bongolian", "CorruptUser", "Flandres", "GeeJayK", "KarmaPolice", "LeftyGreenMario", "OnlySortaDumb", "Plutocow", "RWRW", "Rockford the Roe", "Spud");
+#$wgElectionStoreDir = "$IP/../election";
 
 # Less annoying watchlist notifications
 $wgDefaultUserOptions['watchcreations'] = 1;
