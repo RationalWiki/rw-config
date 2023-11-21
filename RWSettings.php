@@ -628,9 +628,10 @@ $logGroups = array(
 	'CirrusSearchRequests',
 	'Elastica',
 	'exception',
+	'FSFileBackend',
+	'Math',
 	'lqt',
 	'slow-parse',
-	'FSFileBackend',
 );
 foreach ( $logGroups as $logGroup ) {
 	$wgDebugLogGroups[$logGroup] = "/var/log/mw/$logGroup.log";
